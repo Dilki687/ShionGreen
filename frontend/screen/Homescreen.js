@@ -2,7 +2,7 @@ import React from 'react'
 
 function Homescreen() {
   return (
-    <div>Homescreen</div>
+    <div>Homescreen dilki</div>
   )
 }
 
