@@ -1,6 +1,7 @@
 import React from 'react';
 import './App.css';
 import NavBar from './components/NavBar';
+import Footer from './components/footer'; // Import Footer component
 
 function App() {
   return (
@@ -10,6 +11,7 @@ function App() {
         <h1>Welcome to Shion Green!</h1>
         <p>Explore our products and services.</p>
       </main>
+      <Footer /> {/* Add Footer component here */}
     </div>
   );
 }
