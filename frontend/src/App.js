@@ -4,6 +4,7 @@ import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import NavBar from './components/NavBar';
 import Footer from './components/footer'; // Import Footer component
 import ContactUs from './screens/ContactUs'; // Import ContactUs page
+import OrderForm from './screens/OrderForm';
 
 function App() {
   return (
@@ -23,6 +24,7 @@ function App() {
               }
             />
             <Route path="/contactus" element={<ContactUs />} />
+            <Route path="/orderform" element={<OrderForm />} />
           </Routes>
         </main>
         <Footer /> {/* Footer component */}

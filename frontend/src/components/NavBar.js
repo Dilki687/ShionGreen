@@ -56,7 +56,7 @@ const NavBar = () => {
                   <a className="nav-link" href="/products">Products</a>
                 </li>
                 <li className="nav-item">
-                  <a className="nav-link" href="/place-order">Place Order</a>
+                  <a className="nav-link" href="/orderform">Place Order</a>
                 </li>
               </ul>
               <select className="form-select form-select-sm bg-light border-0">
