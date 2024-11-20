@@ -1,15 +1,17 @@
 import React from 'react';
 import './App.css';
-import header from './components/header'; // Ensure correct file name capitalization
+import NavBar from './components/NavBar';
 
 function App() {
   return (
     <div className="App">
-      <Header />
-      <h1>Welcome to Shion Green</h1>
+      <NavBar />
+      <main className="container mt-4">
+        <h1>Welcome to Shion Green!</h1>
+        <p>Explore our products and services.</p>
+      </main>
     </div>
   );
 }
 
 export default App;
-
