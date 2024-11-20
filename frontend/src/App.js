@@ -12,7 +12,7 @@ function App() {
     <Router>
       <div className="App">
         <NavBar /> {/* Header component */}
-        <main className="container mt-4">
+        <main>
           <Routes>
             {/* Define routes for different pages */}
             <Route path="/" element={<HomePage />} />

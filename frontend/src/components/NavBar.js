@@ -1,15 +1,52 @@
-import React from 'react';
-import 'bootstrap/dist/css/bootstrap.min.css'; // Import Bootstrap styles
-import logo from '../images/logo.jpg'; // Corrected path to the logo
+import React from "react";
+import "bootstrap/dist/css/bootstrap.min.css"; // Import Bootstrap styles
+import { useNavigate } from "react-router-dom"; 
+import logo from "../images/logo.jpg"; // Corrected path to the logo
 
 const NavBar = () => {
+  const navigate = useNavigate(); // Initialize useNavigate hook
+
+  // Function to handle scroll to the About Us section
+  const handleScrollToAbout = (e) => {
+    e.preventDefault(); // Prevent default link behavior
+    navigate("/"); // Navigate to home page
+
+    // Scroll to the About Us section after the page has loaded
+    setTimeout(() => {
+      const aboutSection = document.getElementById("aboutSection");
+      if (aboutSection) {
+        aboutSection.scrollIntoView({
+          behavior: "smooth", // Smooth scroll effect
+          block: "start", // Scroll to the top of the section
+        });
+      }
+    }, 0); // Timeout to ensure the page has time to load
+  };
+
+  // Function to handle scroll to the Products section
+  const handleScrollToProducts = (e) => {
+    e.preventDefault(); // Prevent default link behavior
+    navigate("/"); // Navigate to home page
+
+    // Scroll to the Products section after the page has loaded
+    setTimeout(() => {
+      const productsSection = document.getElementById("cinnamonCarouselSection");
+      if (productsSection) {
+        productsSection.scrollIntoView({
+          behavior: "smooth", // Smooth scroll effect
+          block: "start", // Scroll to the top of the section
+        });
+      }
+    }, 0); // Timeout to ensure the page has time to load
+  };
+  
   return (
     <header>
       <nav
         className="navbar navbar-expand-lg navbar-dark"
         style={{
-          backgroundColor: '#113805', // Custom color
-          height: '70px', // Increased height of the navbar
+          backgroundColor: "#113805", // Custom color
+          height: "70px", // Increased height of the navbar
         }}
       >
         <div className="container-fluid">
@@ -19,10 +56,10 @@ const NavBar = () => {
               src={logo} // Use the imported image here
               alt="Shion Green Logo"
               style={{
-                width: '40px', // Size of the logo
-                height: '40px', // Make the logo circular
-                borderRadius: '50%', // Circular logo
-                marginRight: '10px', // Space between logo and brand name
+                width: "40px", // Size of the logo
+                height: "40px", // Make the logo circular
+                borderRadius: "50%", // Circular logo
+                marginRight: "10px", // Space between logo and brand name
               }}
             />
             Shion Green
@@ -44,19 +81,38 @@ const NavBar = () => {
             <div className="ms-auto d-flex align-items-center">
               <ul className="navbar-nav me-3 mb-2 mb-lg-0 text-nowrap">
                 <li className="nav-item">
-                  <a className="nav-link active" href="/">Home</a>
+                  <a className="nav-link active" href="/">
+                    Home
+                  </a>
                 </li>
                 <li className="nav-item">
-                  <a className="nav-link" href="/about">About Us</a>
+                  <a
+                    className="nav-link"
+                    href="#"
+                    onClick={handleScrollToAbout} // Handle scroll to About Us section
+                  >
+                    About Us
+                  </a>
+                </li>
+
+                <li className="nav-item">
+                  <a className="nav-link" href="/contactus">
+                    Contact Us
+                  </a>
                 </li>
                 <li className="nav-item">
-                  <a className="nav-link" href="/contactus">Contact Us</a>
+                  <a
+                    className="nav-link"
+                    href="#"
+                    onClick={handleScrollToProducts} // Handle scroll to Products section
+                  >
+                    Products
+                  </a>
                 </li>
                 <li className="nav-item">
-                  <a className="nav-link" href="/products">Products</a>
-                </li>
-                <li className="nav-item">
-                  <a className="nav-link" href="/orderform">Place Order</a>
+                  <a className="nav-link" href="/orderform">
+                    Place Order
+                  </a>
                 </li>
               </ul>
               <select className="form-select form-select-sm bg-light border-0">
