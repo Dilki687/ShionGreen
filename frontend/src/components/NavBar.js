@@ -1,5 +1,6 @@
 import React from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css'; // Import Bootstrap styles
+import logo from '../images/logo.jpg'; // Corrected path to the logo
 
 const NavBar = () => {
   return (
@@ -15,7 +16,7 @@ const NavBar = () => {
           {/* Logo and brand name */}
           <a className="navbar-brand d-flex align-items-center" href="/">
             <img
-              src="your-logo-url.png" // Replace with your logo URL
+              src={logo} // Use the imported image here
               alt="Shion Green Logo"
               style={{
                 width: '40px', // Size of the logo
