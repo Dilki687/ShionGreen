@@ -5,6 +5,7 @@ import NavBar from './components/NavBar';
 import Footer from './components/footer'; // Import Footer component
 import ContactUs from './screens/ContactUs'; // Import ContactUs page
 import OrderForm from './screens/OrderForm';
+import HomePage from './screens/HomePage'
 
 function App() {
   return (
@@ -14,15 +15,7 @@ function App() {
         <main className="container mt-4">
           <Routes>
             {/* Define routes for different pages */}
-            <Route
-              path="/"
-              element={
-                <div>
-                  <h1>Welcome to Shion Green!</h1>
-                  <p>Explore our products and services.</p>
-                </div>
-              }
-            />
+            <Route path="/" element={<HomePage />} />
             <Route path="/contactus" element={<ContactUs />} />
             <Route path="/orderform" element={<OrderForm />} />
           </Routes>
