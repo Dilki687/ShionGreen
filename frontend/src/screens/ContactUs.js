@@ -1,11 +1,12 @@
 import React from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
+import "../styles/ContactUs.css"; 
 
 const ContactUs = () => {
   return (
     <div className="contact-us">
       {/* Banner Section */}
-      <div className="bg-dark text-white text-center py-5">
+      <div className="banner-section text-white text-center py-5">
         <h1>Contact us!</h1>
         <p className="lead">Stay connected with us</p>
       </div>

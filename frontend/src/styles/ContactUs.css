@@ -1,0 +1,20 @@
+/* ContactUs.css */
+.banner-section {
+    background-image: url("../images/banner1.jpg");  /* Adjust the path as necessary */
+    background-size: cover;   /* Make sure the image covers the entire section */
+    background-position: center center;   /* Center the image */
+    background-repeat: no-repeat;  /* Prevent repetition of the image */
+    min-height: 400px;  /* Adjust the minimum height as needed */
+    filter: brightness(0.8) contrast(1.2); /* Optional: Adjust brightness/contrast for better clarity */
+  }
+  
+  
+  .banner-section h1 {
+    font-size: 4rem;
+    margin-top: 50px;
+  }
+  
+  .banner-section p {
+    font-size: 1.5rem; 
+  }
+  
