@@ -1,6 +1,6 @@
 import React from "react";
 import "bootstrap/dist/css/bootstrap.min.css"; // Import Bootstrap styles
-import { useNavigate } from "react-router-dom"; 
+import { useNavigate } from "react-router-dom";
 import logo from "../images/logo.jpg"; // Corrected path to the logo
 
 const NavBar = () => {
@@ -8,19 +8,20 @@ const NavBar = () => {
 
   // Function to handle scroll to the About Us section
   const handleScrollToAbout = (e) => {
-    e.preventDefault(); // Prevent default link behavior
-    navigate("/"); // Navigate to home page
+    e.preventDefault();
+    navigate("/");
 
-    // Scroll to the About Us section after the page has loaded
     setTimeout(() => {
       const aboutSection = document.getElementById("aboutSection");
       if (aboutSection) {
-        aboutSection.scrollIntoView({
-          behavior: "smooth", // Smooth scroll effect
-          block: "start", // Scroll to the top of the section
+        const navbarHeight = 70; // Adjust for your navbar height
+        const topOffset = aboutSection.offsetTop - navbarHeight; // Offset by navbar height
+        window.scrollTo({
+          top: topOffset,
+          behavior: "smooth",
         });
       }
-    }, 0); // Timeout to ensure the page has time to load
+    }, 0);
   };
 
   // Function to handle scroll to the Products section
@@ -30,23 +31,31 @@ const NavBar = () => {
 
     // Scroll to the Products section after the page has loaded
     setTimeout(() => {
-      const productsSection = document.getElementById("cinnamonCarouselSection");
+      const productsSection = document.getElementById(
+        "cinnamonCarouselSection"
+      );
       if (productsSection) {
-        productsSection.scrollIntoView({
+        const navbarHeight = 70; // Adjust for your navbar height
+        const topOffset = productsSection.offsetTop - navbarHeight; // Offset by navbar height
+        window.scrollTo({
+          top: topOffset,
           behavior: "smooth", // Smooth scroll effect
-          block: "start", // Scroll to the top of the section
         });
       }
     }, 0); // Timeout to ensure the page has time to load
   };
-  
+
   return (
     <header>
       <nav
-        className="navbar navbar-expand-lg navbar-dark"
+        className="navbar navbar-expand-lg navbar-dark sticky-navbar"
         style={{
           backgroundColor: "#113805", // Custom color
           height: "70px", // Increased height of the navbar
+          position: "fixed", // Make the navbar sticky
+          top: 0, // Stick to the top of the viewport
+          width: "100%", // Ensure it spans the full width
+          zIndex: 1000, // Keep it above other content
         }}
       >
         <div className="container-fluid">

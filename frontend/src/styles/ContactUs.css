@@ -6,6 +6,7 @@
     background-repeat: no-repeat;  /* Prevent repetition of the image */
     min-height: 400px;  /* Adjust the minimum height as needed */
     filter: brightness(0.8) contrast(1.2); /* Optional: Adjust brightness/contrast for better clarity */
+    margin-top: 70px; /* Same as the navbar height */      
   }
   
   
