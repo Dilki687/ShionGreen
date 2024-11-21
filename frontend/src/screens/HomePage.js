@@ -96,6 +96,11 @@ const HomePage = () => {
             trade practices and preserve the environment. Whether you are a professional chef or a home cook, our premium spices are
             designed to elevate your dishes with their unmatched freshness, aroma, and taste.
           </p>
+          <p>
+            We believe in the power of these exceptional spices to transform meals and improve well-being. With their proven health
+            benefits, including antioxidant properties and digestive support, our Ceylon cinnamon and pepper are perfect additions to
+            any pantry. Let us bring the warmth, depth, and richness of Sri Lanka's finest spices into your home - one spice at a time.
+          </p>
         </div>
       </div>
 
