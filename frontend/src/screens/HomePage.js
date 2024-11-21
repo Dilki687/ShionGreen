@@ -49,7 +49,7 @@ const HomePage = () => {
           className="position-absolute banner-content"
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
-          transition={{ duration: 1 }}
+          transition={{ duration: 1.5 }}
         >
           <h1
             className="fw-bold"
@@ -62,18 +62,17 @@ const HomePage = () => {
             Shion Green
           </h1>
           <p
-            className="mt-3"
+            className="mt-3 text-left"
             style={{
-              fontFamily: "Roboto, sans-serif",
-              fontWeight: "normal",
+              fontWeight: 400, // Normal font weight
               fontSize: "1.2rem",
-              textAlign: "left",
-              lineHeight: "1.6",
+              lineHeight: 1.6, // Consistent line heightz
             }}
           >
             Savor the unique blend of rich Ceylon cinnamon and aromatic spices,sourced directly from Sri Lanka, combined with premium ingredients
             for an unforgettable experience.
           </p>
+
           <button
             className="btn fw-bold mt-4 custom-btn"
             onClick={handleAddOrderClick}
@@ -105,12 +104,23 @@ const HomePage = () => {
                 className="text-primary"
                 onClick={(e) => {
                   e.preventDefault(); // Prevent default link behavior
-                  document
-                    .getElementById("cinnamonCarouselSection")
-                    .scrollIntoView({
-                      behavior: "smooth", // Smooth scroll effect
-                      block: "start", // Scroll to the top of the section
-                    });
+                  navigate("/"); // Navigate to the home page
+
+                  // Scroll to the section after navigating
+                  setTimeout(() => {
+                    const cinnamonSection = document.getElementById(
+                      "cinnamonCarouselSection"
+                    );
+                    if (cinnamonSection) {
+                      const navbarHeight = 70; // Adjust for your navbar height
+                      const topOffset =
+                        cinnamonSection.offsetTop - navbarHeight; // Offset by navbar height
+                      window.scrollTo({
+                        top: topOffset,
+                        behavior: "smooth", // Smooth scroll effect
+                      });
+                    }
+                  }, 0); // Timeout to ensure the page has time to load
                 }}
               >
                 Read More..
@@ -135,12 +145,22 @@ const HomePage = () => {
                 className="text-primary"
                 onClick={(e) => {
                   e.preventDefault(); // Prevent default link behavior
-                  document
-                    .getElementById("pepperCarouselSection")
-                    .scrollIntoView({
-                      behavior: "smooth", // Smooth scroll effect
-                      block: "start", // Scroll to the top of the section
-                    });
+                  navigate("/"); // Navigate to the home page
+
+                  // Scroll to the section after navigating
+                  setTimeout(() => {
+                    const pepperSection = document.getElementById(
+                      "pepperCarouselSection"
+                    );
+                    if (pepperSection) {
+                      const navbarHeight = 70; // Adjust for your navbar height
+                      const topOffset = pepperSection.offsetTop - navbarHeight; // Offset by navbar height
+                      window.scrollTo({
+                        top: topOffset,
+                        behavior: "smooth", // Smooth scroll effect
+                      });
+                    }
+                  }, 0); // Timeout to ensure the page has time to load
                 }}
               >
                 Read More..

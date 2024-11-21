@@ -1,7 +1,7 @@
 /* Updated .banner */
 .banner {
-  height: 100vh; /* Full viewport height */
-  width: 100%; /* Full viewport width */
+  height: 60vh; /* Reduced height, adjust as needed */
+  width: 100%; /* Full width */
   position: relative;
   overflow: hidden;
   margin-top: 70px; /* Same as the navbar height */
