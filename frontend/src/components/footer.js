@@ -16,7 +16,12 @@ const Footer = () => {
         "cinnamonCarouselSection"
       );
       if (cinnamonSection) {
-        cinnamonSection.scrollIntoView({ behavior: "smooth", block: "start" });
+        const navbarHeight = 70; // Adjust for your navbar height
+        const topOffset = cinnamonSection.offsetTop - navbarHeight; // Offset by navbar height
+        window.scrollTo({
+          top: topOffset,
+          behavior: "smooth", // Smooth scroll effect
+        });
       }
     }, 0); // Timeout to ensure the page has time to load
   };
