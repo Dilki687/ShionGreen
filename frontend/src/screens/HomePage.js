@@ -23,65 +23,100 @@ const HomePage = () => {
   const handleAddOrderClick = () => {
     navigate("/orderform"); // Redirect to the OrderForm route
   };
+ // Animation variants for the paragraph
+ const paragraphVariant = {
+  hidden: { opacity: 0, x: -100 }, // Start off-screen to the left
+  visible: {
+    opacity: 1,
+    x: 0, // Move to normal position
+    transition: {
+      staggerChildren: 0.1, // Delay for each word
+    },
+  },
+};
 
-  return (
-    <div>
-      {/* Video Banner */}
-      <div className="position-relative banner">
-        {/* Background Video */}
-        <video
-          className="w-100 h-100 position-absolute"
-          autoPlay
-          loop
-          muted
-          playsInline
-          style={{ objectFit: "cover" }}
+const wordVariant = {
+  hidden: { opacity: 0, x: -20 }, // Start each word off-screen to the left
+  visible: { opacity: 1, x: 0 }, // Move each word to normal position
+};
+
+return (
+  <div>
+    {/* Video Banner */}
+    <div className="position-relative banner">
+      {/* Background Video */}
+      <video
+        className="w-100 h-100 position-absolute"
+        autoPlay
+        loop
+        muted
+        playsInline
+        style={{ objectFit: "cover" }}
+      >
+        <source src={bannervideo} type="video/mp4" />
+        Your browser does not support the video tag.
+      </video>
+
+      {/* Overlay for darkening the background */}
+      <div className="position-absolute top-0 start-0 w-100 h-100 banner-overlay"></div>
+
+      {/* Content container */}
+      <motion.div
+        className="position-absolute banner-content d-flex flex-column justify-content-center align-items-center"
+        initial={{ opacity: 0, x: -100 }} // Start from left
+        animate={{ opacity: 1, x: 0 }} // Move to normal position
+        transition={{ duration: 5 }} // Slow down the animation
+        style={{
+          top: "30%",
+          left: "10%",
+          transform: "translate(-50%, -50%)",
+          textAlign: "center", // Center the text horizontally
+        }}
+      >
+        <motion.h1
+          className="fw-bold"
+          style={{
+            fontFamily: "Poppins, Lato",
+            fontSize: "4rem",
+            lineHeight: "1.2",
+          }}
+          initial={{ opacity: 0, x: -100 }} // Smoothly animate from left
+          animate={{ opacity: 1, x: 0 }} // End at normal position
+          transition={{ duration: 2 }} // Slow down the animation
         >
-          <source src={bannervideo} type="video/mp4" />
-          Your browser does not support the video tag.
-        </video>
+          Shion Green
+        </motion.h1>
 
-        {/* Overlay for darkening the background */}
-        <div className="position-absolute top-0 start-0 w-100 h-100 banner-overlay"></div>
-
-        {/* Content container */}
+        {/* Paragraph with animated words */}
         <motion.div
-          className="position-absolute banner-content"
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ duration: 1.5 }}
+          className="mt-3 text-left"
+          variants={paragraphVariant}
+          initial="hidden"
+          animate="visible"
         >
-          <h1
-            className="fw-bold"
-            style={{
-              fontFamily: "Poppins, Lato",
-              fontSize: "4rem",
-              lineHeight: "1.2",
-            }}
-          >
-            Shion Green
-          </h1>
-          <p
-            className="mt-3 text-left"
-            style={{
-              fontWeight: 400, // Normal font weight
-              fontSize: "1.2rem",
-              lineHeight: 1.6, // Consistent line heightz
-            }}
-          >
-            Savor the unique blend of rich Ceylon cinnamon and aromatic spices,sourced directly from Sri Lanka, combined with premium ingredients
-            for an unforgettable experience.
-          </p>
-
-          <button
-            className="btn fw-bold mt-4 custom-btn"
-            onClick={handleAddOrderClick}
-          >
-            Add Order
-          </button>
+          {"Savor the unique blend of rich Ceylon cinnamon and aromatic spices, sourced directly from Sri Lanka, combined with premium ingredients for an unforgettable experience."
+            .split(" ")
+            .map((word, index) => (
+              <motion.span
+                key={index}
+                variants={wordVariant}
+                style={{ display: "inline-block", marginRight: "5px" }}
+              >
+                {word}
+              </motion.span>
+            ))}
         </motion.div>
-      </div>
 
+        {/* Add Order Button */}
+        <button
+          className="btn fw-bold mt-4 custom-btn"
+          onClick={handleAddOrderClick}
+        >
+          Add Order
+        </button>
+      </motion.div>
+      </div>
+     
       {/* Cinnamon and Pepper Boxes */}
       <div className="container mt-5">
         <div className="row">

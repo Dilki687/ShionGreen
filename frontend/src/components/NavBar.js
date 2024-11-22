@@ -71,7 +71,15 @@ const NavBar = () => {
                 marginRight: "10px", // Space between logo and brand name
               }}
             />
-            Shion Green
+            <span
+              className="fw-bold"
+              style={{
+                fontFamily: "Poppins, Lato",
+                fontSize: "1.5rem",
+              }}
+            >
+              Shion Green
+            </span>
           </a>
 
           <button
