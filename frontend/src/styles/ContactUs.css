@@ -1,23 +1,22 @@
 /* ContactUs.css */
-
-/* Banner Section */
 .banner-section {
-  background-image: url("../images/banner1.jpg");
-  background-size: cover;
-  background-position: center center;
-  background-repeat: no-repeat;
-  min-height: 400px;
-  filter: brightness(0.8) contrast(1.2);
-  margin-top: 70px;
+  background-image: url("../images/banner1.jpg");  /* Adjust the path as necessary */
+  background-size: cover;   /* Make sure the image covers the entire section */
+  background-position: center center;   /* Center the image */
+  background-repeat: no-repeat;  /* Prevent repetition of the image */
+  min-height: 400px;  /* Adjust the minimum height as needed */
+  filter: brightness(0.8) contrast(1.2); /* Optional: Adjust brightness/contrast for better clarity */
+  margin-top: 70px; /* Same as the navbar height */      
 }
 
+
 .banner-section h1 {
-  font-size: 2.5rem; /* Adjusted for better responsiveness */
+  font-size: 4rem;
   margin-top: 50px;
 }
 
 .banner-section p {
-  font-size: 1.2rem;
+  font-size: 1.5rem; 
 }
 
 /* Contact Details Cards */
@@ -66,29 +65,4 @@
   }
 }
 
-/* Ensure the body and html fill the viewport */
-html, body {
-  height: 100%;
-  margin: 0;
-  padding: 0;
-  overflow-x: hidden; /* Prevent horizontal scrolling */
-}
-
-/* Ensure container and main content fill the screen */
-.contact-us {
-  display: flex;
-  flex-direction: column;
-  min-height: 100vh;
-}
-
-/* Footer sticks to the bottom */
-footer {
-  margin-top: auto; /* Push footer to the bottom */
-}
-
-/* Remove margin/padding below the footer */
-footer, .contact-us {
-  padding-bottom: 0;
-  margin-bottom: 0;
-}
 
