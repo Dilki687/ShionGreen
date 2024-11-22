@@ -12,6 +12,8 @@ import pepperImage2 from "../images/pepper2.jpeg";
 import pepperImage3 from "../images/pepper3.jpeg";
 import pepperImage4 from "../images/pepper4.jpeg";
 import pepperImage5 from "../images/pepper5.jpeg";
+import bannervideo from "../videos/bannervideo.mp4";
+
 import logo2 from "../images/logo2.jpeg";
 
 const HomePage = () => {
@@ -24,8 +26,21 @@ const HomePage = () => {
 
   return (
     <div>
-      {/* Banner Image */}
+      {/* Video Banner */}
       <div className="position-relative banner">
+        {/* Background Video */}
+        <video
+          className="w-100 h-100 position-absolute"
+          autoPlay
+          loop
+          muted
+          playsInline
+          style={{ objectFit: "cover" }}
+        >
+          <source src={bannervideo} type="video/mp4" />
+          Your browser does not support the video tag.
+        </video>
+
         {/* Overlay for darkening the background */}
         <div className="position-absolute top-0 start-0 w-100 h-100 banner-overlay"></div>
 
@@ -56,8 +71,7 @@ const HomePage = () => {
               lineHeight: "1.6",
             }}
           >
-            Savor the unique blend of rich Ceylon cinnamon and aromatic spices,
-            sourced directly from Sri Lanka, combined with premium ingredients
+            Savor the unique blend of rich Ceylon cinnamon and aromatic spices,sourced directly from Sri Lanka, combined with premium ingredients
             for an unforgettable experience.
           </p>
           <button
