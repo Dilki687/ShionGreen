@@ -14,7 +14,7 @@ const NavBar = () => {
     setTimeout(() => {
       const aboutSection = document.getElementById("aboutSection");
       if (aboutSection) {
-        const navbarHeight = 70; // Adjust for your navbar height
+        const navbarHeight = document.querySelector(".navbar").offsetHeight; // Dynamically calculate navbar height
         const topOffset = aboutSection.offsetTop - navbarHeight; // Offset by navbar height
         window.scrollTo({
           top: topOffset,
@@ -26,53 +26,50 @@ const NavBar = () => {
 
   // Function to handle scroll to the Products section
   const handleScrollToProducts = (e) => {
-    e.preventDefault(); // Prevent default link behavior
-    navigate("/"); // Navigate to home page
+    e.preventDefault();
+    navigate("/");
 
-    // Scroll to the Products section after the page has loaded
     setTimeout(() => {
-      const productsSection = document.getElementById(
-        "cinnamonCarouselSection"
-      );
+      const productsSection = document.getElementById("cinnamonCarouselSection");
       if (productsSection) {
-        const navbarHeight = 70; // Adjust for your navbar height
-        const topOffset = productsSection.offsetTop - navbarHeight; // Offset by navbar height
+        const navbarHeight = document.querySelector(".navbar").offsetHeight;
+        const topOffset = productsSection.offsetTop - navbarHeight;
         window.scrollTo({
           top: topOffset,
-          behavior: "smooth", // Smooth scroll effect
+          behavior: "smooth",
         });
       }
-    }, 0); // Timeout to ensure the page has time to load
+    }, 0);
   };
 
   return (
     <header>
       <nav
-        className="navbar navbar-expand-lg navbar-dark sticky-navbar"
-        style={{
-          backgroundColor: "#113805", // Custom color
-          height: "70px", // Increased height of the navbar
-          position: "fixed", // Make the navbar sticky
-          top: 0, // Stick to the top of the viewport
-          width: "100%", // Ensure it spans the full width
-          zIndex: 1000, // Keep it above other content
-        }}
+          className="navbar navbar-expand-lg navbar-dark sticky-navbar"
+          style={{
+            backgroundColor: "#113805", // Custom color
+            height: "70px", // Increased height of the navbar
+            position: "fixed", // Make the navbar sticky
+            top: 0, // Stick to the top of the viewport
+            width: "100%", // Ensure it spans the full width
+            zIndex: 1000, // Keep it above other content
+          }}
       >
         <div className="container-fluid">
           {/* Logo and brand name */}
           <a className="navbar-brand d-flex align-items-center" href="/">
             <img
-              src={logo} // Use the imported image here
+              src={logo}
               alt="Shion Green Logo"
               style={{
-                width: "40px", // Size of the logo
-                height: "40px", // Make the logo circular
+                width: "40px",
+                height: "40px",
                 borderRadius: "50%", // Circular logo
-                marginRight: "10px", // Space between logo and brand name
+                marginRight: "10px",
               }}
             />
             <span
-              className="fw-bold"
+              className="fw-bold text-white"
               style={{
                 fontFamily: "Poppins, Lato",
                 fontSize: "1.5rem",
@@ -95,44 +92,35 @@ const NavBar = () => {
           </button>
 
           <div className="collapse navbar-collapse" id="navbarNav">
-            <div className="ms-auto d-flex align-items-center">
-              <ul className="navbar-nav me-3 mb-2 mb-lg-0 text-nowrap">
-                <li className="nav-item">
-                  <a className="nav-link active" href="/">
-                    Home
-                  </a>
-                </li>
-                <li className="nav-item">
-                  <a
-                    className="nav-link"
-                    href="#"
-                    onClick={handleScrollToAbout} // Handle scroll to About Us section
-                  >
-                    About Us
-                  </a>
-                </li>
-
-                <li className="nav-item">
-                  <a className="nav-link" href="/contactus">
-                    Contact Us
-                  </a>
-                </li>
-                <li className="nav-item">
-                  <a
-                    className="nav-link"
-                    href="#"
-                    onClick={handleScrollToProducts} // Handle scroll to Products section
-                  >
-                    Products
-                  </a>
-                </li>
-                <li className="nav-item">
-                  <a className="nav-link" href="/orderform">
-                    Place Order
-                  </a>
-                </li>
-              </ul>
-              <select className="form-select form-select-sm bg-light border-0">
+            <ul className="navbar-nav ms-auto text-center">
+              <li className="nav-item">
+                <a className="nav-link active" href="/">
+                  Home
+                </a>
+              </li>
+              <li className="nav-item">
+                <a className="nav-link" href="#" onClick={handleScrollToAbout}>
+                  About Us
+                </a>
+              </li>
+              <li className="nav-item">
+                <a className="nav-link" href="/contactus">
+                  Contact Us
+                </a>
+              </li>
+              <li className="nav-item">
+                <a className="nav-link" href="#" onClick={handleScrollToProducts}>
+                  Products
+                </a>
+              </li>
+              <li className="nav-item">
+                <a className="nav-link" href="/orderform">
+                  Place Order
+                </a>
+              </li>
+            </ul>
+            <div className="d-flex justify-content-center align-items-center mt-3 mt-lg-0">
+              <select className="form-select form-select-sm bg-light border-0 w-auto">
                 <option value="en">English</option>
                 <option value="jp">Japanese</option>
               </select>
