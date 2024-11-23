@@ -82,7 +82,7 @@ return (
           }}
           initial={{ opacity: 0, x: -100 }} // Smoothly animate from left
           animate={{ opacity: 1, x: 0 }} // End at normal position
-          transition={{ duration: 2 }} // Slow down the animation
+          transition={{ duration: 5 }} // Slow down the animation
         >
           Shion Green
         </motion.h1>
@@ -111,6 +111,10 @@ return (
         <button
           className="btn fw-bold mt-4 custom-btn"
           onClick={handleAddOrderClick}
+          style={{
+            padding: "10px 20px", // Adjust button size for better accessibility
+            fontSize: "1rem", // Ensure readability on small screens
+          }}
         >
           Add Order
         </button>
