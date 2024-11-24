@@ -1,6 +1,7 @@
 const mongoose = require("mongoose");
 
-var mongoURL = 'mongodb+srv://booking:2002@booking.vtm6k.mongodb.net/shiongreen-orders'
+var mongoURL = 'mongodb+srv://booking:2002@booking.vtm6k.mongodb.net/shiongreen-orders?retryWrites=true&w=majority'
+
 
 mongoose.connect(mongoURL)
 
