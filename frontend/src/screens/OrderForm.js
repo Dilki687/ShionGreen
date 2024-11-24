@@ -128,8 +128,8 @@ const OrderForm = () => {
                   <option value="" disabled>
                     Select a product
                   </option>
-                  <option value="Product 1">Cinnamon</option>
-                  <option value="Product 2">Pepper</option>
+                  <option value="Cinnamon">Cinnamon</option>
+                  <option value="Pepper">Pepper</option>
                 
                 </select>
               </div>

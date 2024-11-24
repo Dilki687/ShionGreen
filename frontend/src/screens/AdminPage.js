@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import "bootstrap/dist/css/bootstrap.min.css"; // Import Bootstrap CSS
 import { jsPDF } from 'jspdf'; // Import jsPDF
 import logo from "../images/logo.jpg"; // Import logo
+import Swal from 'sweetalert2';
 
 const AdminPage = () => {
   const [orders, setOrders] = useState([]);
@@ -116,18 +117,29 @@ const AdminPage = () => {
 
   // Function to delete an order
   const deleteOrder = async (orderId) => {
-    try {
-      const response = await fetch(`http://localhost:5000/api/orders/${orderId}`, {
-        method: 'DELETE',
-      });
-
-      if (response.ok) {
-        setOrders(prevOrders => prevOrders.filter(order => order._id !== orderId));
-      } else {
-        console.error('Error deleting order');
+    const result = await Swal.fire({
+      title: 'Are you sure?',
+      text: "You won't be able to revert this!",
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonText: 'Yes, delete it!',
+    });
+  
+    if (result.isConfirmed) {
+      try {
+        const response = await fetch(`http://localhost:5000/api/orders/${orderId}`, {
+          method: 'DELETE',
+        });
+        
+        if (response.ok) {
+          setOrders(prevOrders => prevOrders.filter(order => order._id !== orderId));
+          Swal.fire('Deleted!', 'Order has been deleted.', 'success');
+        } else {
+          Swal.fire('Error!', 'Failed to delete the order.', 'error');
+        }
+      } catch (error) {
+        Swal.fire('Error!', 'Failed to delete the order.', 'error');
       }
-    } catch (error) {
-      console.error('Error deleting order:', error);
     }
   };
 
