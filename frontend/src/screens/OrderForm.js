@@ -1,5 +1,6 @@
 import React, { useState } from "react";
-import '../styles/OrderForm.css'; 
+import "../styles/OrderForm.css";
+import swal from "sweetalert";
 
 const OrderForm = () => {
   const [formData, setFormData] = useState({
@@ -19,7 +20,7 @@ const OrderForm = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-  
+
     try {
       const response = await fetch("http://localhost:5000/api/orders", {
         method: "POST",
@@ -28,10 +29,16 @@ const OrderForm = () => {
         },
         body: JSON.stringify(formData),
       });
-  
+
       const result = await response.json();
       if (response.ok) {
-        alert(result.message);
+        // SweetAlert for success
+        swal({
+          title: "Success!",
+          text: "Order submitted successfully!",
+          icon: "success",
+          button: "OK",
+        });
         setFormData({
           name: "",
           email: "",
@@ -42,14 +49,25 @@ const OrderForm = () => {
           description: "",
         });
       } else {
-        alert("Error: " + result.message);
+        // SweetAlert for error
+        swal({
+          title: "Error",
+          text: result.message,
+          icon: "error",
+          button: "Try Again",
+        });
       }
     } catch (error) {
       console.error("Error submitting form:", error);
+      // SweetAlert for error
+      swal({
+        title: "Error",
+        text: "An error occurred while submitting the form.",
+        icon: "error",
+        button: "OK",
+      });
     }
   };
-  
-  
 
   return (
     <div className="container my-5 order-form-container">
@@ -94,7 +112,10 @@ const OrderForm = () => {
             {/* Product & Quantity */}
             <div className="row g-3 mb-3">
               <div className="col-md-6">
-                <label htmlFor="product" className="form-label order-form-label">
+                <label
+                  htmlFor="product"
+                  className="form-label order-form-label"
+                >
                   Product
                 </label>
                 <select
@@ -105,14 +126,19 @@ const OrderForm = () => {
                   onChange={handleInputChange}
                   required
                 >
-                  <option value="" disabled>Select a product</option>
+                  <option value="" disabled>
+                    Select a product
+                  </option>
                   <option value="Product 1">Product 1</option>
                   <option value="Product 2">Product 2</option>
                   <option value="Product 3">Product 3</option>
                 </select>
               </div>
               <div className="col-md-6">
-                <label htmlFor="quantity" className="form-label order-form-label">
+                <label
+                  htmlFor="quantity"
+                  className="form-label order-form-label"
+                >
                   Quantity (Kg)
                 </label>
                 <input
@@ -146,7 +172,10 @@ const OrderForm = () => {
                 />
               </div>
               <div className="col-md-6">
-                <label htmlFor="address" className="form-label order-form-label">
+                <label
+                  htmlFor="address"
+                  className="form-label order-form-label"
+                >
                   Address
                 </label>
                 <input
@@ -164,7 +193,10 @@ const OrderForm = () => {
 
             {/* Description */}
             <div className="mb-3">
-              <label htmlFor="description" className="form-label order-form-label">
+              <label
+                htmlFor="description"
+                className="form-label order-form-label"
+              >
                 Description
               </label>
               <textarea
@@ -176,11 +208,14 @@ const OrderForm = () => {
                 onChange={handleInputChange}
                 placeholder="Enter description"
               ></textarea>
-            </div>            
+            </div>
 
             {/* Submit Button */}
             <div className="text-center">
-              <button type="submit" className="btn btn-success btn-lg px-4 order-form-submit">
+              <button
+                type="submit"
+                className="btn btn-success btn-lg px-4 order-form-submit"
+              >
                 Submit
               </button>
             </div>
