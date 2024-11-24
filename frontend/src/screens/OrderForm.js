@@ -8,9 +8,8 @@ const OrderForm = () => {
     product: "",
     quantity: "",
     phone: "",
-    postalCode: "",
+    address: "",
     description: "",
-    file: null,
   });
 
   const handleInputChange = (e) => {
@@ -18,15 +17,39 @@ const OrderForm = () => {
     setFormData({ ...formData, [name]: value });
   };
 
-  const handleFileChange = (e) => {
-    setFormData({ ...formData, file: e.target.files[0] });
-  };
-
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log("Form submitted:", formData);
-    // Add backend submission logic here
+  
+    try {
+      const response = await fetch("http://localhost:5000/api/orders", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(formData),
+      });
+  
+      const result = await response.json();
+      if (response.ok) {
+        alert(result.message);
+        setFormData({
+          name: "",
+          email: "",
+          product: "",
+          quantity: "",
+          phone: "",
+          address: "",
+          description: "",
+        });
+      } else {
+        alert("Error: " + result.message);
+      }
+    } catch (error) {
+      console.error("Error submitting form:", error);
+    }
   };
+  
+  
 
   return (
     <div className="container my-5 order-form-container">
@@ -123,17 +146,17 @@ const OrderForm = () => {
                 />
               </div>
               <div className="col-md-6">
-                <label htmlFor="postalCode" className="form-label order-form-label">
-                  Postal Code
+                <label htmlFor="address" className="form-label order-form-label">
+                  Address
                 </label>
                 <input
                   type="text"
                   className="form-control"
-                  id="postalCode"
-                  name="postalCode"
-                  value={formData.postalCode}
+                  id="address"
+                  name="address"
+                  value={formData.address}
                   onChange={handleInputChange}
-                  placeholder="Enter postal code"
+                  placeholder="Enter address"
                   required
                 />
               </div>
@@ -153,24 +176,7 @@ const OrderForm = () => {
                 onChange={handleInputChange}
                 placeholder="Enter description"
               ></textarea>
-            </div>
-
-            {/* File Upload */}
-            <div className="mb-3">
-              <label htmlFor="file" className="form-label order-form-label">
-                Upload File
-              </label>
-              <div className="input-group">
-                <input
-                  type="file"
-                  className="form-control"
-                  id="file"
-                  name="file"
-                  onChange={handleFileChange}
-                />
-                <label className="input-group-text" htmlFor="file">Browse</label>
-              </div>
-            </div>
+            </div>            
 
             {/* Submit Button */}
             <div className="text-center">
