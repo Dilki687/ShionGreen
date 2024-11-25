@@ -50,25 +50,17 @@ router.post("/login", async (req, res) => {
 
   try {
     const user = await User.findOne({ email });
+    if (!user) return res.status(404).json({ message: "User not found" });
 
-    if (!user) {
-      console.log("User not found:", email);  // Debugging log
-      return res.status(404).json({ message: "User not found" });
-    }
-
-    // Debugging logs to check password comparison
-    console.log('Entered password:', password);
-    console.log('Stored hashed password:', user.password);
-
+    // Check if the password matches
     const isMatch = await bcrypt.compare(password, user.password);
-
-    if (!isMatch) {
-      console.log('Password mismatch');  // Debugging log
+    if (!isMatch)
       return res.status(400).json({ message: "Incorrect password" });
-    }
 
     // Generate JWT token
-    const token = jwt.sign({ id: user._id, role: user.role }, JWT_SECRET, { expiresIn: "1h" });
+    const token = jwt.sign({ id: user._id, role: user.role }, JWT_SECRET, {
+      expiresIn: "1h",
+    });
 
     res.status(200).json({ user, token });
   } catch (err) {
