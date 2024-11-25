@@ -8,6 +8,8 @@ import OrderForm from "./screens/OrderForm";
 import HomePage from "./screens/HomePage";
 import AdminPage from "./screens/AdminPage"; // Import AdminPage
 import Sidebar from "./components/Sidebar"; // Import Sidebar component
+import Login from "./components/Login";
+import Signup from "./components/Signup";
 
 function App() {
   return (
@@ -36,6 +38,8 @@ const MainLayout = () => {
           <Routes>
             {/* Define routes for different pages */}
             <Route path="/" element={<HomePage />} />
+            <Route path="/login" element={<Login />} />
+            <Route path="/signup" element={<Signup />} />
             <Route path="/contactus" element={<ContactUs />} />
             <Route path="/orderform" element={<OrderForm />} />
             <Route path="/admin" element={<AdminPage />} /> {/* AdminPage Route */}

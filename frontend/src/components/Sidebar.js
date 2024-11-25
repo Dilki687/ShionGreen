@@ -5,10 +5,11 @@ import logo from "../images/logo.jpg"; // Import logo
 const Sidebar = () => {
   return (
     <div
-      className="bg-dark text-white d-flex flex-column"
+      className="text-white d-flex flex-column"
       style={{
         width: "250px",
-        minHeight: "100vh", // Ensures full height
+        minHeight: "100vh", 
+        background: "#113805"// Ensures full height
       }}
     >
       {/* Admin Profile Icon */}
