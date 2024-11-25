@@ -4,7 +4,13 @@ import logo from "../images/logo.jpg"; // Import logo
 
 const Sidebar = () => {
   return (
-    <div className="bg-dark text-white vh-100" style={{ width: "250px", position: "relative" }}>
+    <div
+      className="bg-dark text-white d-flex flex-column"
+      style={{
+        width: "250px",
+        minHeight: "100vh", // Ensures full height
+      }}
+    >
       {/* Admin Profile Icon */}
       <div className="position-absolute top-0 end-0 p-3">
         <a href="#" className="text-white">
@@ -12,17 +18,17 @@ const Sidebar = () => {
         </a>
       </div>
 
+      {/* Logo */}
       <div className="text-center py-4">
-        {/* Logo */}
         <img
           src={logo} // Use imported logo here
           alt="Logo"
           className="img-fluid rounded-circle mb-3"
           style={{ width: "50px", height: "50px" }}
         />
-       
       </div>
 
+      {/* Navigation Items */}
       <ul className="nav flex-column px-3">
         <li className="nav-item mb-3">
           <a href="#" className="nav-link text-white">
