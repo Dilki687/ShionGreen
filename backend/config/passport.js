@@ -6,9 +6,9 @@ const User = require("../models/user");
 passport.use(
   new GoogleStrategy(
     {
-      clientID: process.env.GOOGLE_CLIENT_ID,
+      clientID: process.env.GOOGLE_CLIENT_ID, // Make sure this is not undefined
       clientSecret: process.env.GOOGLE_CLIENT_SECRET,
-      callbackURL: "/auth/google/callback",
+      callbackURL: process.env.GOOGLE_CALLBACK_URL, // Avoid hardcoding
     },
     async (accessToken, refreshToken, profile, done) => {
       const { id, displayName, emails } = profile;
