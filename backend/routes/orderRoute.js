@@ -20,6 +20,23 @@ router.post('/', async (req, res) => {
     res.status(500).json({ message: 'Internal server error' });
   }
 });
+router.delete('/:id', async (req, res) => {  // Remove the '/orders' from the delete path
+  try {
+    const { id } = req.params;
+    const order = await Order.findByIdAndDelete(id);
+
+    if (!order) {
+      return res.status(404).json({ message: 'Order not found' });
+    }
+
+    return res.status(200).json({ message: 'Order deleted successfully' });
+  } catch (error) {
+    console.error('Error deleting order:', error);
+    return res.status(500).json({ message: 'Error deleting order' });
+  }
+});
+
+
 
 // Get all orders
 router.get('/', async (req, res) => {

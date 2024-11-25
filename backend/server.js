@@ -11,8 +11,8 @@ app.use(cors());
 app.use(bodyParser.json());
 
 // Routes
-app.use('/api/orders', orderRoutes);
 
+app.use('/api/orders', orderRoutes);  // This ensures /api/orders/:id will work for DELETE
 
 const port = process.env.PORT || 5000;
 
