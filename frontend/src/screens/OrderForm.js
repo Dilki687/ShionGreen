@@ -11,6 +11,7 @@ const OrderForm = () => {
     phone: "",
     address: "",
     description: "",
+    customerType: "", // New field for customer type
   });
 
   const handleInputChange = (e) => {
@@ -32,7 +33,6 @@ const OrderForm = () => {
 
       const result = await response.json();
       if (response.ok) {
-        // SweetAlert for success
         swal({
           title: "Success!",
           text: "Order submitted successfully!",
@@ -47,9 +47,9 @@ const OrderForm = () => {
           phone: "",
           address: "",
           description: "",
+          customerType: "", // Reset customer type
         });
       } else {
-        // SweetAlert for error
         swal({
           title: "Error",
           text: result.message,
@@ -59,7 +59,6 @@ const OrderForm = () => {
       }
     } catch (error) {
       console.error("Error submitting form:", error);
-      // SweetAlert for error
       swal({
         title: "Error",
         text: "An error occurred while submitting the form.",
@@ -129,9 +128,8 @@ const OrderForm = () => {
                   <option value="" disabled>
                     Select a product
                   </option>
-                  <option value="Product 1">Product 1</option>
-                  <option value="Product 2">Product 2</option>
-                  <option value="Product 3">Product 3</option>
+                  <option value="Product 1">Cinnamon</option>
+                  <option value="Product 2">Pepper</option>
                 </select>
               </div>
               <div className="col-md-6">
@@ -189,6 +187,30 @@ const OrderForm = () => {
                   required
                 />
               </div>
+            </div>
+
+            {/* Customer Type */}
+            <div className="mb-3">
+              <label
+                htmlFor="customerType"
+                className="form-label order-form-label"
+              >
+                Customer Type
+              </label>
+              <select
+                className="form-select"
+                id="customerType"
+                name="customerType"
+                value={formData.customerType}
+                onChange={handleInputChange}
+                required
+              >
+                <option value="" disabled>
+                  Select customer type
+                </option>
+                <option value="Individual">Individual</option>
+                <option value="Company">Company</option>
+              </select>
             </div>
 
             {/* Description */}

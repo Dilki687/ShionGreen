@@ -5,13 +5,19 @@ const Order = require('../models/order');
 // Create a new order
 router.post('/', async (req, res) => {
   try {
-    const { name, email, product, quantity, phone, address, description } = req.body;
+    const { name, email, product, quantity, phone, address, description, customerType } = req.body;
 
-    if (!name || !email || !product || !quantity || !phone || !address) {
+    // Check for required fields
+    if (!name || !email || !product || !quantity || !phone || !address || !customerType) {
       return res.status(400).json({ message: 'All fields are required.' });
     }
 
-    const newOrder = new Order({ name, email, product, quantity, phone, address, description });
+    // Validate customerType
+    if (!['Individual', 'Company'].includes(customerType)) {
+      return res.status(400).json({ message: 'Invalid customer type. Must be either "Individual" or "Company".' });
+    }
+
+    const newOrder = new Order({ name, email, product, quantity, phone, address, description, customerType });
     await newOrder.save();
 
     res.status(201).json({ message: 'Order created successfully!', order: newOrder });
@@ -20,7 +26,9 @@ router.post('/', async (req, res) => {
     res.status(500).json({ message: 'Internal server error' });
   }
 });
-router.delete('/:id', async (req, res) => {  // Remove the '/orders' from the delete path
+
+// Delete an order
+router.delete('/:id', async (req, res) => {
   try {
     const { id } = req.params;
     const order = await Order.findByIdAndDelete(id);
@@ -35,8 +43,6 @@ router.delete('/:id', async (req, res) => {  // Remove the '/orders' from the de
     return res.status(500).json({ message: 'Error deleting order' });
   }
 });
-
-
 
 // Get all orders
 router.get('/', async (req, res) => {

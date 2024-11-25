@@ -38,14 +38,16 @@ const AdminPage = () => {
 
     // Order details - centered in the middle of the page
     doc.setFontSize(12);
-    doc.text(`Order ID: #${order._id}`, doc.internal.pageSize.width / 2, 70, null, null, "center");
-    doc.text(`Customer Name: ${order.name}`, doc.internal.pageSize.width / 2, 80, null, null, "center");
-    doc.text(`Product: ${order.product}`, doc.internal.pageSize.width / 2, 90, null, null, "center");
-    doc.text(`Quantity: ${order.quantity}`, doc.internal.pageSize.width / 2, 100, null, null, "center");
-    doc.text(`Phone: ${order.phone}`, doc.internal.pageSize.width / 2, 110, null, null, "center");
-    doc.text(`Address: ${order.address}`, doc.internal.pageSize.width / 2, 120, null, null, "center");
-    doc.text(`Description: ${order.description}`, doc.internal.pageSize.width / 2, 130, null, null, "center");
-    doc.text(`Email: ${order.email}`, doc.internal.pageSize.width / 2, 140, null, null, "center");
+doc.text(`Order ID: #${order._id}`, doc.internal.pageSize.width / 2, 70, null, null, "center");
+doc.text(`Customer Name: ${order.name}`, doc.internal.pageSize.width / 2, 80, null, null, "center");
+doc.text(`Customer Type: ${order.customerType}`, doc.internal.pageSize.width / 2, 90, null, null, "center");
+doc.text(`Product: ${order.product}`, doc.internal.pageSize.width / 2, 100, null, null, "center");
+doc.text(`Quantity: ${order.quantity}`, doc.internal.pageSize.width / 2, 110, null, null, "center");
+doc.text(`Phone: ${order.phone}`, doc.internal.pageSize.width / 2, 120, null, null, "center");
+doc.text(`Address: ${order.address}`, doc.internal.pageSize.width / 2, 130, null, null, "center");
+doc.text(`Description: ${order.description}`, doc.internal.pageSize.width / 2, 140, null, null, "center");
+doc.text(`Email: ${order.email}`, doc.internal.pageSize.width / 2, 150, null, null, "center");
+
 
     // Status
     doc.text(`Status: ${order.status}`, doc.internal.pageSize.width / 2, 150, null, null, "center");
@@ -80,14 +82,15 @@ const AdminPage = () => {
     orders.forEach(order => {
       doc.setFontSize(12);
       doc.text(`Order ID: #${order._id}`, 10, yOffset);
-      doc.text(`Customer Name: ${order.name}`, 10, yOffset + 10);
-      doc.text(`Product: ${order.product}`, 10, yOffset + 20);
-      doc.text(`Quantity: ${order.quantity}`, 10, yOffset + 30);
-      doc.text(`Phone: ${order.phone}`, 10, yOffset + 40);
-      doc.text(`Address: ${order.address}`, 10, yOffset + 50);
-      doc.text(`Description: ${order.description}`, 10, yOffset + 60);
-      doc.text(`Email: ${order.email}`, 10, yOffset + 70);
-      doc.text(`Status: ${order.status}`, 10, yOffset + 80);
+doc.text(`Customer Name: ${order.name}`, 10, yOffset + 10);
+doc.text(`Customer Type: ${order.customerType}`, 10, yOffset + 20);
+doc.text(`Product: ${order.product}`, 10, yOffset + 30);
+doc.text(`Quantity: ${order.quantity}`, 10, yOffset + 40);
+doc.text(`Phone: ${order.phone}`, 10, yOffset + 50);
+doc.text(`Address: ${order.address}`, 10, yOffset + 60);
+doc.text(`Description: ${order.description}`, 10, yOffset + 70);
+doc.text(`Email: ${order.email}`, 10, yOffset + 80);
+doc.text(`Status: ${order.status}`, 10, yOffset + 90);
 
       // Add a horizontal line after each order
       doc.setLineWidth(0.5);
@@ -150,12 +153,14 @@ const AdminPage = () => {
                 <div className="card-body">
                   <h5 className="card-title">Order ID: #{order._id}</h5>
                   <p className="card-text"><strong>Customer Name:</strong> {order.name}</p>
-                  <p className="card-text"><strong>Product:</strong> {order.product}</p>
-                  <p className="card-text"><strong>Quantity:</strong> {order.quantity}</p>
-                  <p className="card-text"><strong>Phone:</strong> {order.phone}</p>
-                  <p className="card-text"><strong>Address:</strong> {order.address}</p>
-                  <p className="card-text"><strong>Description:</strong> {order.description}</p>
-                  <p className="card-text"><strong>Email:</strong> {order.email}</p>
+<p className="card-text"><strong>Customer Type:</strong> {order.customerType}</p>
+<p className="card-text"><strong>Product:</strong> {order.product}</p>
+<p className="card-text"><strong>Quantity:</strong> {order.quantity}</p>
+<p className="card-text"><strong>Phone:</strong> {order.phone}</p>
+<p className="card-text"><strong>Address:</strong> {order.address}</p>
+<p className="card-text"><strong>Description:</strong> {order.description}</p>
+<p className="card-text"><strong>Email:</strong> {order.email}</p>
+
 
                   <div className="d-flex justify-content-between align-items-center">
                     <span className={`badge ${order.status === 'Completed' ? 'bg-success' : order.status === 'Pending' ? 'bg-warning' : 'bg-danger'}`}>
