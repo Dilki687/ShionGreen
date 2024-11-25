@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect } from 'react';  
 import "bootstrap/dist/css/bootstrap.min.css"; // Import Bootstrap CSS
 import { jsPDF } from 'jspdf'; // Import jsPDF
 import logo from "../images/logo.jpg"; // Import logo
@@ -6,11 +6,13 @@ import logo from "../images/logo.jpg"; // Import logo
 const AdminPage = () => {
   const [orders, setOrders] = useState([]);
 
+  // Fetch orders on component mount
   useEffect(() => {
     const fetchOrders = async () => {
       try {
         const response = await fetch('http://localhost:5000/api/orders');
         const data = await response.json();
+        console.log(data); // Log fetched orders to ensure they are fetched correctly
         setOrders(data);
       } catch (error) {
         console.error('Error fetching orders:', error);
@@ -24,93 +26,92 @@ const AdminPage = () => {
   const generateOrderReport = (order) => {
     const doc = new jsPDF();
 
-    // Add logo to the PDF (centered and rounded)
-    const logoSize = 40; // Size of the logo (adjust as needed)
-    const logoX = (doc.internal.pageSize.width - logoSize) / 2; // Centered X position
-    const logoY = 10; // Fixed Y position at the top
-    doc.addImage(logo, 'JPG', logoX, logoY, logoSize, logoSize, undefined, 'FAST'); // Adjust size and position
-    doc.setFillColor(255, 255, 255);
-   
+    // Add logo to the PDF
+    const logoSize = 40;
+    const logoX = (doc.internal.pageSize.width - logoSize) / 2;
+    const logoY = 10;
+    doc.addImage(logo, 'JPG', logoX, logoY, logoSize, logoSize, undefined, 'FAST');
+
     // Title - centered
     doc.setFont("helvetica", "bold");
     doc.setFontSize(16);
     doc.text("Order Report", doc.internal.pageSize.width / 2, 60, null, null, "center");
 
-    // Order details - centered in the middle of the page
+    // Order details
     doc.setFontSize(12);
-doc.text(`Order ID: #${order._id}`, doc.internal.pageSize.width / 2, 70, null, null, "center");
-doc.text(`Customer Name: ${order.name}`, doc.internal.pageSize.width / 2, 80, null, null, "center");
-doc.text(`Customer Type: ${order.customerType}`, doc.internal.pageSize.width / 2, 90, null, null, "center");
-doc.text(`Product: ${order.product}`, doc.internal.pageSize.width / 2, 100, null, null, "center");
-doc.text(`Quantity: ${order.quantity}`, doc.internal.pageSize.width / 2, 110, null, null, "center");
-doc.text(`Phone: ${order.phone}`, doc.internal.pageSize.width / 2, 120, null, null, "center");
-doc.text(`Address: ${order.address}`, doc.internal.pageSize.width / 2, 130, null, null, "center");
-doc.text(`Description: ${order.description}`, doc.internal.pageSize.width / 2, 140, null, null, "center");
-doc.text(`Email: ${order.email}`, doc.internal.pageSize.width / 2, 150, null, null, "center");
+    doc.text(`Order ID: #${order._id}`, 20, 80);
+    doc.text(`Customer Name: ${order.name}`, 20, 90);
+    doc.text(`Customer Type: ${order.customerType}`, 20, 100);
+    doc.text(`Product: ${order.product}`, 20, 110);
+    doc.text(`Quantity: ${order.quantity}`, 20, 120);
+    doc.text(`Phone: ${order.phone}`, 20, 130);
+    doc.text(`Address: ${order.address}`, 20, 140);
+    doc.text(`Description: ${order.description}`, 20, 150);
+    doc.text(`Email: ${order.email}`, 20, 160);
+    doc.text(`Status: ${order.status}`, 20, 170);
+    doc.text(`Order Placed At: ${new Date(order.createdAt).toLocaleString()}`, 20, 180);
 
-
-    // Status
-    doc.text(`Status: ${order.status}`, doc.internal.pageSize.width / 2, 150, null, null, "center");
-
-    // Timestamp at the bottom in small letters
+    // Timestamp at the bottom
     const timestamp = new Date().toLocaleString();
     doc.setFontSize(8);
-    doc.text(`Report generated on: ${timestamp}`, doc.internal.pageSize.width / 2, 280, null, null, "center");
+    doc.text(`Report generated on: ${timestamp}`, doc.internal.pageSize.width / 2, 290, null, null, "center");
 
-    // Save the PDF with a name
+    // Save the PDF
     doc.save(`Order_Report_${order._id}.pdf`);
   };
 
   // Function to generate a PDF report for all orders
   const generateAllOrdersReport = () => {
+    console.log('Generating All Orders Report...');
     const doc = new jsPDF();
 
-    // Add logo to the PDF (centered and rounded)
-    const logoSize = 40; // Size of the logo (adjust as needed)
-    const logoX = (doc.internal.pageSize.width - logoSize) / 2; // Centered X position
-    const logoY = 10; // Fixed Y position at the top
-    doc.addImage(logo, 'JPG', logoX, logoY, logoSize, logoSize, undefined, 'FAST'); // Adjust size and position
-    doc.setFillColor(255, 255, 255);
-    
-    // Title - centered
+    // Add logo to the PDF
+    const logoSize = 40;
+    const logoX = (doc.internal.pageSize.width - logoSize) / 2;
+    const logoY = 10;
+    doc.addImage(logo, 'JPG', logoX, logoY, logoSize, logoSize, undefined, 'FAST');
+
+    // Title
     doc.setFont("helvetica", "bold");
     doc.setFontSize(16);
     doc.text("Orders Report", doc.internal.pageSize.width / 2, 60, null, null, "center");
 
-    let yOffset = 80; // Set initial Y position for content
+    let yOffset = 80;
 
-    orders.forEach(order => {
+    orders.forEach(order => { 
       doc.setFontSize(12);
       doc.text(`Order ID: #${order._id}`, 10, yOffset);
-doc.text(`Customer Name: ${order.name}`, 10, yOffset + 10);
-doc.text(`Customer Type: ${order.customerType}`, 10, yOffset + 20);
-doc.text(`Product: ${order.product}`, 10, yOffset + 30);
-doc.text(`Quantity: ${order.quantity}`, 10, yOffset + 40);
-doc.text(`Phone: ${order.phone}`, 10, yOffset + 50);
-doc.text(`Address: ${order.address}`, 10, yOffset + 60);
-doc.text(`Description: ${order.description}`, 10, yOffset + 70);
-doc.text(`Email: ${order.email}`, 10, yOffset + 80);
-doc.text(`Status: ${order.status}`, 10, yOffset + 90);
+      doc.text(`Customer Name: ${order.name}`, 10, yOffset + 10);
+      doc.text(`Customer Type: ${order.customerType}`, 10, yOffset + 20);
+      doc.text(`Product: ${order.product}`, 10, yOffset + 30);
+      doc.text(`Quantity: ${order.quantity}`, 10, yOffset + 40);
+      doc.text(`Phone: ${order.phone}`, 10, yOffset + 50);
+      doc.text(`Address: ${order.address}`, 10, yOffset + 60);
+      doc.text(`Description: ${order.description}`, 10, yOffset + 70);
+      doc.text(`Email: ${order.email}`, 10, yOffset + 80);
+      doc.text(`Status: ${order.status}`, 10, yOffset + 90);
+      doc.text(`Order Placed At: ${new Date(order.createdAt).toLocaleString()}`, 10, yOffset + 100);
 
-      // Add a horizontal line after each order
+      // Add a line after each order
       doc.setLineWidth(0.5);
-      doc.line(10, yOffset + 85, doc.internal.pageSize.width - 10, yOffset + 85);
+      doc.line(10, yOffset + 110, doc.internal.pageSize.width - 10, yOffset + 110);
 
-      yOffset += 90; // Increase Y position for the next order
+      yOffset += 120;
 
+      // Check if the yOffset exceeds the page height and add a new page if necessary
       if (yOffset > 250) {
-        doc.addPage(); // Add a new page if content goes beyond page length
-        yOffset = 10; // Reset Y position for the new page
+        doc.addPage();
+        yOffset = 10;
       }
     });
 
-    // Timestamp at the bottom in small letters
+    // Timestamp at the bottom
     const timestamp = new Date().toLocaleString();
     doc.setFontSize(8);
     doc.text(`Report generated on: ${timestamp}`, doc.internal.pageSize.width / 2, 280, null, null, "center");
 
-    // Save the PDF with a name
-    doc.save(`All_Orders_Report.pdf`);
+    // Save the PDF
+    doc.save("All_Orders_Report.pdf");
   };
 
   // Function to delete an order
@@ -121,7 +122,6 @@ doc.text(`Status: ${order.status}`, 10, yOffset + 90);
       });
 
       if (response.ok) {
-        // Remove the deleted order from the state
         setOrders(prevOrders => prevOrders.filter(order => order._id !== orderId));
       } else {
         console.error('Error deleting order');
@@ -132,63 +132,50 @@ doc.text(`Status: ${order.status}`, 10, yOffset + 90);
   };
 
   return (
-    <div className="d-flex">
-      {/* Main Content */}
-      <div className="flex-grow-1 p-4">
-        
-        {/* Generate All Orders Report Button */}
+    <div className="container py-4">
+      {/* Button to generate the report for all orders - placed at the top of the cards */}
+      <div className="d-flex justify-content-between mb-4">
         <button
-          className="btn mb-4"
-          style={{ backgroundColor: '#113805', color: '#fff', display: 'flex', alignItems: 'center' }}
+          className="btn"
           onClick={generateAllOrdersReport}
+          style={{ backgroundColor: "#113805", color: "white" }}
         >
-          Download All 
+          Generate All Orders Report
         </button>
+      </div>
 
-        <div className="row">
-          {/* Dynamically Render Cards for Each Order */}
-          {orders.map((order) => (
-            <div key={order._id} className="col-md-4 mb-4">
-              <div className="card shadow-sm">
-                <div className="card-body">
-                  <h5 className="card-title">Order ID: #{order._id}</h5>
-                  <p className="card-text"><strong>Customer Name:</strong> {order.name}</p>
-<p className="card-text"><strong>Customer Type:</strong> {order.customerType}</p>
-<p className="card-text"><strong>Product:</strong> {order.product}</p>
-<p className="card-text"><strong>Quantity:</strong> {order.quantity}</p>
-<p className="card-text"><strong>Phone:</strong> {order.phone}</p>
-<p className="card-text"><strong>Address:</strong> {order.address}</p>
-<p className="card-text"><strong>Description:</strong> {order.description}</p>
-<p className="card-text"><strong>Email:</strong> {order.email}</p>
-
-
-                  <div className="d-flex justify-content-between align-items-center">
-                    <span className={`badge ${order.status === 'Completed' ? 'bg-success' : order.status === 'Pending' ? 'bg-warning' : 'bg-danger'}`}>
-                      {order.status}
-                    </span>
-
-                    {/* Generate Report Button */}
-                    <button 
-                      className="btn"
-                      style={{ backgroundColor: '#000', color: '#fff', display: 'flex', alignItems: 'center' }} // Changed to black
-                      onClick={() => generateOrderReport(order)}
-                    >
-                      Download
-                    </button>
-
-                    {/* Delete Order Button */}
-                    <button
-                      className="btn btn-danger"
-                      onClick={() => deleteOrder(order._id)}
-                    >
-                      Delete
-                    </button>
-                  </div>
-                </div>
+      <div className="row mt-5">
+        {orders.map((order) => (
+          <div key={order._id} className="col-md-4 mb-4">
+            <div className="card shadow-sm">
+              <div className="card-body">
+                <h5 className="card-title">Order ID: #{order._id}</h5>
+                <p><strong>Customer Name:</strong> {order.name}</p>
+                <p><strong>Customer Type:</strong> {order.customerType}</p>
+                <p><strong>Product:</strong> {order.product}</p>
+                <p><strong>Quantity:</strong> {order.quantity}</p>
+                <p><strong>Phone:</strong> {order.phone}</p>
+                <p><strong>Address:</strong> {order.address}</p>
+                <p><strong>Description:</strong> {order.description}</p>
+                <p><strong>Email:</strong> {order.email}</p>
+                <p><strong>Status:</strong> {order.status}</p>
+                <p><strong>Order Placed At:</strong> {new Date(order.createdAt).toLocaleString()}</p>
+                <button
+                  className="btn btn-dark me-2"
+                  onClick={() => generateOrderReport(order)}
+                >
+                  Generate Report
+                </button>
+                <button
+                  className="btn btn-danger"
+                  onClick={() => deleteOrder(order._id)}
+                >
+                  Delete
+                </button>
               </div>
             </div>
-          ))}
-        </div>
+          </div>
+        ))}
       </div>
     </div>
   );

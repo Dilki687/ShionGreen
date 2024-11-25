@@ -128,9 +128,9 @@ const OrderForm = () => {
                   <option value="" disabled>
                     Select a product
                   </option>
-                  <option value="Product 1">Product 1</option>
-                  <option value="Product 2">Product 2</option>
-                  <option value="Product 3">Product 3</option>
+                  <option value="Product 1">Cinnamon</option>
+                  <option value="Product 2">Pepper</option>
+                
                 </select>
               </div>
               <div className="col-md-6">
