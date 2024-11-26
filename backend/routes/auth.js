@@ -12,6 +12,13 @@ const GOOGLE_CLIENT_ID = process.env.GOOGLE_CLIENT_ID; // Google Client ID from 
 // Initialize OAuth2 Client
 const client = new OAuth2Client(GOOGLE_CLIENT_ID);
 
+// Helper function to generate JWT token
+const generateJwtToken = (user) => {
+  return jwt.sign({ id: user._id, role: user.role }, JWT_SECRET, {
+    expiresIn: "1h",
+  });
+};
+
 // Signup Route
 router.post("/signup", async (req, res) => {
   const { name, email, password, role } = req.body;
@@ -76,68 +83,64 @@ router.post("/login", async (req, res) => {
 });
 
 // Google Login Route
-router.post('/google', async (req, res) => {
-  const { tokenId } = req.body;  // Token sent from the frontend
-
-  if (!tokenId) {
-    return res.status(400).json({ message: "No token provided" });
-  }
+router.post("/google", async (req, res) => {
+  const { tokenId } = req.body;
 
   try {
-    const ticket = await client.verifyIdToken({
-      idToken: tokenId,  // ID token to be verified
-      audience: process.env.GOOGLE_CLIENT_ID,  // Ensure this matches your Google client ID
-    });
-
-    const payload = ticket.getPayload();  // Contains user info
-    console.log("User Info:", payload);
-
-    // Check if the user exists, create a new user if not
-    let user = await User.findOne({ googleId: payload.sub });
-    if (!user) {
-      user = new User({ googleId: payload.sub, name: payload.name, email: payload.email });
-      await user.save();
-    }
-
-    // Generate a JWT token for the user and return it
-    const token = generateJwtToken(user);
-    res.json({ message: 'Google login successful', token });
-
-  } catch (error) {
-    console.error('Google Authentication Error:', error);
-    res.status(400).json({ message: 'Invalid Google token', error });
-  }
-});
-
-router.post("/google-signup", async (req, res) => {
-  try {
-    const { tokenId } = req.body;
-
-    // Verify Google token
     const ticket = await client.verifyIdToken({
       idToken: tokenId,
-      audience: process.env.GOOGLE_CLIENT_ID,
+      audience: GOOGLE_CLIENT_ID,
     });
 
     const payload = ticket.getPayload();
+    let user = await User.findOne({ email: payload.email });
 
-    const { name, email } = payload;
-
-    // Check if the user already exists or create a new user
-    let user = await User.findOne({ email });
     if (!user) {
       user = new User({
-        name,
-        email,
-        password: null, // Or set a default value
+        googleId: payload.sub,
+        name: payload.name,
+        email: payload.email,
+        password: null,
       });
       await user.save();
     }
 
-    // Respond with success
-    res.status(200).json({ message: "Google signup successful", user });
-  } catch (error) {
-    console.error("Google Signup Error:", error);
+    const token = generateJwtToken(user);
+    res.status(200).json({ user, token });
+  } catch (err) {
+    console.error("Google Login Error:", err);
+    res.status(400).json({ message: "Invalid Google token" });
+  }
+});
+
+// Google Signup Route
+router.post("/google-signup", async (req, res) => {
+  const { tokenId } = req.body;
+
+  try {
+    const ticket = await client.verifyIdToken({
+      idToken: tokenId,
+      audience: GOOGLE_CLIENT_ID,
+    });
+
+    const payload = ticket.getPayload();
+    const { name, email } = payload;
+
+    let user = await User.findOne({ email });
+    if (!user) {
+      user = new User({
+        googleId: payload.sub,
+        name,
+        email,
+        password: null,
+      });
+      await user.save();
+    }
+
+    const token = generateJwtToken(user);
+    res.status(200).json({ user, token });
+  } catch (err) {
+    console.error("Google Signup Error:", err);
     res.status(400).json({ message: "Invalid Google token" });
   }
 });
