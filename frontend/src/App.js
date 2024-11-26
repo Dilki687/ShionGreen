@@ -10,6 +10,8 @@ import AdminPage from "./screens/AdminPage"; // Import AdminPage
 import Sidebar from "./components/Sidebar"; // Import Sidebar component
 import Login from "./components/Login";
 import Signup from "./components/Signup";
+import "./i18n"; // Ensure this is imported at the top
+
 
 function App() {
   return (

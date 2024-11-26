@@ -14,10 +14,10 @@ import pepperImage4 from "../images/pepper4.jpeg";
 import pepperImage5 from "../images/pepper5.jpeg";
 import bannervideo from "../videos/bannervideo.mp4";
 import logo2 from "../images/logo2.jpeg";
-
-
+import { useTranslation } from "react-i18next"; // Import useTranslation hook
 
 const HomePage = () => {
+  const { t } = useTranslation(); // Initialize translation function
   const navigate = useNavigate();
 
   const handleAddOrderClick = () => {
@@ -56,33 +56,32 @@ const HomePage = () => {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 2 }}
           >
-            Shion Green
+            {t("brandName")} {/* Use translation */}
           </motion.h1>
           <motion.p
             className="lead"
-            
             initial={{ opacity: 0, y: 50 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 2 }}
           >
-            Savor the unique blend of rich Ceylon cinnamon and aromatic spices, sourced directly from Sri Lanka.
+            {t("welcomeMessage")} {/* Use translation */}
           </motion.p>
           <button
             className="btn btn-primary btn-lg"
             onClick={handleAddOrderClick}
             style={{
-              padding: "10px 20px",  
-              fontSize: "1rem",     
-              backgroundColor: "#113805",  
-              border: "none",               
-              outline: "none"               
+              padding: "10px 20px",
+              fontSize: "1rem",
+              backgroundColor: "#113805",
+              border: "none",
+              outline: "none",
             }}
           >
-            Add Order
+            {t("placeOrder")} {/* Use translation */}
           </button>
         </div>
       </div>
-     
+
       {/* Cinnamon and Pepper Boxes */}
       <div className="container mt-5">
         <div className="row">
@@ -92,13 +91,9 @@ const HomePage = () => {
             transition={{ duration: 0.3 }}
           >
             <div className="p-3 bg-light text-dark rounded">
-              <h3>Cinnamon</h3>
+              <h3>{t("cinnamon")}</h3> {/* Use translation */}
               <p>
-                Experience the essence of Ceylon cinnamon, also known as "true
-                cinnamon," sourced directly from Sri Lanka. Renowned for its
-                delicate, sweet flavor and aromatic fragrance, Ceylon cinnamon
-                stands out for its lower coumarin content and smooth, soft
-                texture.
+                {t("cinnamonDescription")} {/* Add new translation key */}
               </p>
               <a
                 href="#"
@@ -124,7 +119,7 @@ const HomePage = () => {
                   }, 0); // Timeout to ensure the page has time to load
                 }}
               >
-                Read More..
+                {t("readMore")} {/* Use translation */}
               </a>
             </div>
           </motion.div>
@@ -134,12 +129,9 @@ const HomePage = () => {
             transition={{ duration: 0.3 }}
           >
             <div className="p-3 bg-light text-dark rounded">
-              <h3>Pepper</h3>
+              <h3>{t("pepper")}</h3> {/* Use translation */}
               <p>
-                Experience the essence of Ceylon pepper, sourced directly from
-                Sri Lanka. Renowned for its bold, aromatic flavor and rich heat,
-                Ceylon pepper stands out for its unique taste profile and high
-                quality.
+                {t("pepperDescription")} {/* Add new translation key */}
               </p>
               <a
                 href="#"
@@ -164,7 +156,7 @@ const HomePage = () => {
                   }, 0); // Timeout to ensure the page has time to load
                 }}
               >
-                Read More..
+                {t("readMore")} {/* Use translation */}
               </a>
             </div>
           </motion.div>
@@ -174,38 +166,15 @@ const HomePage = () => {
       {/* About Us Section */}
       <div id="aboutSection" className="container mt-5">
         <div className="p-4 bg-light text-dark border rounded">
-          <h2 className="text-center mb-3">About Us</h2>
+          <h2 className="text-center mb-3">{t("aboutUs")}</h2> {/* Use translation */}
           <p>
-            We are more than just an online spice store – we are a bridge to the
-            rich, cultural heritage of Sri Lanka. Our mission is to bring the
-            authentic flavors of Ceylon cinnamon and Ceylon pepper to kitchens
-            around the world, connecting customers with nature's finest spices.
-            Sourced from the lush, fertile lands of Sri Lanka, each batch is
-            carefully cultivated, harvested, and processed using traditional
-            methods to ensure the highest quality.
-          </p>
-          <p>
-            We take pride in our dedication to sustainability and ethical
-            sourcing, working closely with local farmers to promote fair trade
-            practices and preserve the environment. Whether you are a
-            professional chef or a home cook, our premium spices are designed to
-            elevate your dishes with their unmatched freshness, aroma, and
-            taste.
-          </p>
-          <p>
-            We believe in the power of these exceptional spices to transform
-            meals and improve well-being. With their proven health benefits,
-            including antioxidant properties and digestive support, our Ceylon
-            cinnamon and pepper are perfect additions to any pantry. Let us
-            bring the warmth, depth, and richness of Sri Lanka's finest spices
-            into your home - one spice at a time.
+            {t("aboutUsDescription")} {/* Add new translation key */}
           </p>
         </div>
       </div>
-
-      {/* Sliding Images Section for Cinnamon */}
-      <div id="cinnamonCarouselSection" className="container mt-5">
-        <h2 className="text-center mb-4"> Ceylon Cinnamon </h2>
+{/* Sliding Images Section for Cinnamon */}
+<div id="cinnamonCarouselSection" className="container mt-5">
+        <h2 className="text-center mb-4">{t('cinnamon')}</h2>
         <div
           id="cinnamonCarousel"
           className="carousel slide"
@@ -256,7 +225,7 @@ const HomePage = () => {
               className="carousel-control-prev-icon"
               aria-hidden="true"
             ></span>
-            <span className="visually-hidden">Previous</span>
+            <span className="visually-hidden">{t('previous')}</span>
           </button>
           <button
             className="carousel-control-next"
@@ -268,46 +237,18 @@ const HomePage = () => {
               className="carousel-control-next-icon"
               aria-hidden="true"
             ></span>
-            <span className="visually-hidden">Next</span>
+            <span className="visually-hidden">{t('next')}</span>
           </button>
         </div>
 
         <p className="slider-paragraph">
-          At Shion Green, we are proud to bring you the finest, most authentic
-          Ceylon cinnamon and Ceylon pepper directly from the heart of Sri
-          Lanka. Our company was founded with a simple yet powerful mission: to
-          provide premium, high-quality spices that enhance your culinary
-          creations. At Cinnamon and Pepper Imports, we specialize in bringing
-          the finest Ceylon cinnamon and Ceylon pepper directly from Sri Lanka
-          to spice up your culinary creations. Ceylon cinnamon, often regarded
-          as the “true cinnamon,” is renowned for its unique, sweet, and
-          delicate flavor, paired with an aromatic fragrance that is
-          incomparable to other varieties. Sourced from the lush, tropical
-          forests of Sri Lanka, it is carefully harvested and processed using
-          traditional methods to preserve its natural qualities. Known for its
-          soft texture and lower coumarin content, Ceylon cinnamon offers a
-          healthier alternative to the more common cassia cinnamon, making it
-          ideal for everyday cooking, baking, and even health-related uses.
-          Ceylon pepper, grown in the spice-rich soil of Sri Lanka, is a key
-          ingredient in kitchens worldwide. Its bold, robust heat and complex
-          flavor profile make it a perfect addition to any dish, from savory
-          meals to delicate desserts. We hand-select our pepper to ensure that
-          it maintains its intense aromatic heat, fresh flavor, and vibrant
-          color, delivering an unforgettable taste experience. At Cinnamon and
-          Pepper Imports, we take pride in ethically sourcing our products,
-          ensuring sustainable farming practices that support Sri Lanka's local
-          farming communities. By choosing our premium products, you are not
-          only enhancing your dishes but also supporting fair trade,
-          contributing to a more sustainable and equitable global spice
-          industry. Our goal is to deliver the purest, highest quality cinnamon
-          and pepper, bringing a true taste of Sri Lanka to your home with every
-          purchase.
+          {t('cinnamonParagraph')}
         </p>
       </div>
 
       {/* Sliding Images Section for Pepper */}
       <div id="pepperCarouselSection" className="container mt-5">
-        <h2 className="text-center mb-4">Ceylon Pepper</h2>
+        <h2 className="text-center mb-4">{t('pepper')}</h2>
         <div
           id="pepperCarousel"
           className="carousel slide"
@@ -366,7 +307,7 @@ const HomePage = () => {
               className="carousel-control-prev-icon"
               aria-hidden="true"
             ></span>
-            <span className="visually-hidden">Previous</span>
+            <span className="visually-hidden">{t('previous')}</span>
           </button>
           <button
             className="carousel-control-next"
@@ -378,40 +319,18 @@ const HomePage = () => {
               className="carousel-control-next-icon"
               aria-hidden="true"
             ></span>
-            <span className="visually-hidden">Next</span>
+            <span className="visually-hidden">{t('next')}</span>
           </button>
         </div>
 
         <p className="slider-paragraph">
-          At Shion Green, we are proud to offer the finest Ceylon pepper,
-          sourced directly from the fertile and spice-rich lands of Sri Lanka.
-          Renowned for its bold, intense heat and complex flavor profile, Ceylon
-          pepper is a favorite among chefs and home cooks alike for its ability
-          to elevate a wide range of dishes. From savory stews and curries to
-          delicate desserts and fresh salads, Ceylon pepper adds a depth of
-          flavor that is unmatched by other varieties. Its unique combination of
-          heat, richness, and aromatic fragrance enhances the taste of your food
-          while providing a satisfying kick that lingers on the palate. Our
-          Ceylon pepper is carefully hand-selected and processed using
-          traditional, sustainable methods to preserve its natural qualities.
-          Grown in the lush, tropical climate of Sri Lanka, the pepper is
-          harvested at peak ripeness, ensuring that each peppercorn retains its
-          full flavor and vibrant color. The result is a premium product that
-          delivers an authentic, fresh taste every time you use it. At Cinnamon
-          and Pepper Imports, we are committed to ethically sourcing our
-          products, supporting fair trade, and working directly with Sri Lankan
-          farmers who practice environmentally conscious and sustainable farming
-          techniques. By choosing our Ceylon pepper, you are not only enhancing
-          your culinary creations but also contributing to a more sustainable
-          and equitable global spice industry. We take pride in offering the
-          purest, highest quality Ceylon pepper, bringing the true taste of Sri
-          Lanka to your kitchen with every order.
+          {t('pepperParagraph')}
         </p>
       </div>
 
       {/* Our Brands Section */}
       <div className="container mt-5 text-center">
-        <h2>Our Brands</h2>
+        <h2>{t('ourBrands')}</h2>
         <div
           className="brand-logo-container mt-4"
           style={{ marginBottom: "60px" }}

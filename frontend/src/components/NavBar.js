@@ -1,10 +1,19 @@
 import React from "react";
-import "bootstrap/dist/css/bootstrap.min.css"; // Import Bootstrap styles
+import "bootstrap/dist/css/bootstrap.min.css";
 import { useNavigate } from "react-router-dom";
-import logo from "../images/logo.jpg"; // Corrected path to the logo
+import logo from "../images/logo.jpg"; // Correct path to the logo
+import { useTranslation } from "react-i18next"; // Import i18next hook
 
 const NavBar = () => {
-  const navigate = useNavigate(); // Initialize useNavigate hook
+  const navigate = useNavigate();
+  const { t, i18n } = useTranslation(); // Initialize i18next translation hook
+
+  // Function to change language
+  const handleLanguageChange = (event) => {
+    const selectedLanguage = event.target.value;
+    i18n.changeLanguage(selectedLanguage); // Change the language globally
+    localStorage.setItem('language', selectedLanguage); // Store selected language in localStorage to persist language change
+  };
 
   // Function to handle scroll to the About Us section
   const handleScrollToAbout = (e) => {
@@ -14,8 +23,8 @@ const NavBar = () => {
     setTimeout(() => {
       const aboutSection = document.getElementById("aboutSection");
       if (aboutSection) {
-        const navbarHeight = document.querySelector(".navbar").offsetHeight; // Dynamically calculate navbar height
-        const topOffset = aboutSection.offsetTop - navbarHeight; // Offset by navbar height
+        const navbarHeight = document.querySelector(".navbar").offsetHeight;
+        const topOffset = aboutSection.offsetTop - navbarHeight;
         window.scrollTo({
           top: topOffset,
           behavior: "smooth",
@@ -47,16 +56,15 @@ const NavBar = () => {
       <nav
         className="navbar navbar-expand-lg navbar-dark sticky-navbar"
         style={{
-          backgroundColor: "#113805", // Custom color
-          height: "70px", // Increased height of the navbar
-          position: "fixed", // Make the navbar sticky
-          top: 0, // Stick to the top of the viewport
-          width: "100%", // Ensure it spans the full width
-          zIndex: 1000, // Keep it above other content
+          backgroundColor: "#113805",
+          height: "70px",
+          position: "fixed",
+          top: 0,
+          width: "100%",
+          zIndex: 1000,
         }}
       >
         <div className="container-fluid">
-          {/* Logo and brand name */}
           <a className="navbar-brand d-flex align-items-center" href="/">
             <img
               src={logo}
@@ -64,7 +72,7 @@ const NavBar = () => {
               style={{
                 width: "40px",
                 height: "40px",
-                borderRadius: "50%", // Circular logo
+                borderRadius: "50%",
                 marginRight: "10px",
               }}
             />
@@ -75,7 +83,7 @@ const NavBar = () => {
                 fontSize: "1.5rem",
               }}
             >
-              Shion Green
+              {t("brandName")}
             </span>
           </a>
 
@@ -91,42 +99,44 @@ const NavBar = () => {
             <span className="navbar-toggler-icon"></span>
           </button>
 
-          <div 
-            className="collapse navbar-collapse" 
+          <div
+            className="collapse navbar-collapse"
             id="navbarNav"
-            style={{
-              backgroundColor: "#113805", // Green background for the dropdown
-            }}
+            style={{ backgroundColor: "#113805" }}
           >
             <ul className="navbar-nav ms-auto text-center">
               <li className="nav-item">
                 <a className="nav-link active" href="/">
-                  Home
+                  {t("home")}
                 </a>
               </li>
               <li className="nav-item">
                 <a className="nav-link" href="#" onClick={handleScrollToAbout}>
-                  About Us
+                  {t("aboutUs")}
                 </a>
               </li>
               <li className="nav-item">
                 <a className="nav-link" href="/contactus">
-                  Contact Us
+                  {t("contactUs")}
                 </a>
               </li>
               <li className="nav-item">
                 <a className="nav-link" href="#" onClick={handleScrollToProducts}>
-                  Products
+                  {t("products")}
                 </a>
               </li>
               <li className="nav-item">
                 <a className="nav-link" href="/orderform">
-                  Place Order
+                  {t("placeOrder")}
                 </a>
               </li>
             </ul>
             <div className="d-flex justify-content-center align-items-center mt-3 mt-lg-0">
-              <select className="form-select form-select-sm bg-light border-0 w-auto">
+              <select
+                className="form-select form-select-sm bg-light border-0 w-auto"
+                value={i18n.language} // Set the currently selected language as the value
+                onChange={handleLanguageChange}
+              >
                 <option value="en">English</option>
                 <option value="jp">Japanese</option>
               </select>

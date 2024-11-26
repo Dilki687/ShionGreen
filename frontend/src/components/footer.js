@@ -1,10 +1,12 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
+import { useTranslation } from "react-i18next";
 import "@fortawesome/fontawesome-free/css/all.min.css";
 import logo from "../images/logo.jpg";
 
 const Footer = () => {
   const navigate = useNavigate();
+  const { t } = useTranslation(); // Use the translation hook
 
   const handleScrollToProducts = (e) => {
     e.preventDefault();
@@ -54,7 +56,7 @@ const Footer = () => {
             <div className="col-12 mb-3">
               <img
                 src={logo}
-                alt="Logo"
+                alt={t("brandName")}
                 className="rounded-circle"
                 style={{
                   width: "60px",
@@ -64,25 +66,25 @@ const Footer = () => {
               />
             </div>
             <div className="col-12">
-              <p className="mb-2">© PlayCine Media Direct, LLC. All rights reserved</p>
+              <p className="mb-2">© {t("brandName")}. {t("footer.copyright")}</p>
             </div>
             <div className="col-12 mb-3">
               <div className="d-flex justify-content-center flex-wrap">
                 <a href="#privacy" className="text-white mx-2 text-decoration-none">
-                  Privacy
+                  {t("footer.privacy")}
                 </a>
                 <a href="#terms" className="text-white mx-2 text-decoration-none">
-                  Terms
+                  {t("footer.terms")}
                 </a>
                 <a href="/contactus" className="text-white mx-2 text-decoration-none">
-                  Help
+                  {t("footer.help")}
                 </a>
                 <a
                   href="#"
                   className="text-white mx-2 text-decoration-none"
                   onClick={handleScrollToProducts}
                 >
-                  Products
+                  {t("footer.products")}
                 </a>
               </div>
             </div>

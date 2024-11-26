@@ -2,8 +2,11 @@ import React from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "../styles/ContactUs.css";
 import { motion } from "framer-motion";
+import { useTranslation } from "react-i18next";  // Import useTranslation hook
 
 const ContactUs = () => {
+  const { t } = useTranslation();  // Initialize the translation function
+
   return (
     <div className="contact-us">
       {/* Banner Section */}
@@ -13,8 +16,8 @@ const ContactUs = () => {
         animate={{ opacity: 1 }}
         transition={{ duration: 1 }}
       >
-        <h1>Contact us!</h1>
-        <p className="lead">Stay connected with us</p>
+        <h1>{t("contactUs")}</h1> {/* Dynamic translation */}
+        <p className="lead">{t("stayConnected")}</p>
       </motion.div>
 
       {/* Content Section */}
@@ -25,7 +28,7 @@ const ContactUs = () => {
           animate={{ opacity: 1 }}
           transition={{ duration: 1, delay: 0.5 }}
         >
-          HAVE SOME QUESTIONS, ISSUES OR COMMENTS?
+          {t("questionsIssues")}
         </motion.h2>
         <motion.p
           className="text-center mb-5"
@@ -33,10 +36,7 @@ const ContactUs = () => {
           animate={{ opacity: 1 }}
           transition={{ duration: 1, delay: 1 }}
         >
-          Welcome! We are a leading provider of premium traditional spices,
-          offering a range of products such as cinnamon and pepper. For any
-          inquiries, please feel free to reach out to us through the contact
-          points listed below for your convenience.
+          {t("welcomeMessage")}
         </motion.p>
 
         {/* Contact Details Section */}
@@ -50,7 +50,7 @@ const ContactUs = () => {
           >
             <div className="card border-0 shadow-sm">
               <div className="card-body">
-                <h5 className="card-title">General Enquiries</h5>
+                <h5 className="card-title">{t("generalEnquiries")}</h5> {/* Dynamic translation */}
                 <p className="card-text">
                   📞 +123-456-7890 <br /> 📧 info@shionspices.com
                 </p>
@@ -67,7 +67,7 @@ const ContactUs = () => {
           >
             <div className="card border-0 shadow-sm">
               <div className="card-body">
-                <h5 className="card-title">Consumer Enquiries</h5>
+                <h5 className="card-title">{t("consumerEnquiries")}</h5> {/* Dynamic translation */}
                 <p className="card-text">
                   📞 +123-456-7890 <br /> 📧 info@shionspices.com
                 </p>
@@ -84,7 +84,7 @@ const ContactUs = () => {
           >
             <div className="card border-0 shadow-sm">
               <div className="card-body">
-                <h5 className="card-title">General Enquiries</h5>
+                <h5 className="card-title">{t("generalEnquiries")}</h5> {/* Dynamic translation */}
                 <p className="card-text">
                   📞 +123-456-7890 <br /> 📧 info@shionspices.com
                 </p>
@@ -101,7 +101,7 @@ const ContactUs = () => {
           >
             <div className="card border-0 shadow-sm">
               <div className="card-body">
-                <h5 className="card-title">General Enquiries</h5>
+                <h5 className="card-title">{t("generalEnquiries")}</h5> {/* Dynamic translation */}
                 <p className="card-text">
                   📞 +123-456-7890 <br /> 📧 info@shionspices.com
                 </p>
