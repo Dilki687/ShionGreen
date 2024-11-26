@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
+import { GoogleOAuthProvider, GoogleLogin } from "@react-oauth/google";
 import "bootstrap/dist/css/bootstrap.min.css";
 
 const Signup = () => {
@@ -11,10 +12,12 @@ const Signup = () => {
     password: "",
   });
 
+  // Handle traditional signup input changes
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
+  // Handle traditional signup submission
   const handleSubmit = async (e) => {
     e.preventDefault();
     console.log("Form Data Submitted:", formData);
@@ -25,9 +28,27 @@ const Signup = () => {
         formData
       );
       console.log("Signup Success:", data);
-      navigate("/admin");
+      navigate("/login");
     } catch (error) {
       console.error("Signup Error:", error.response?.data || error.message);
+    }
+  };
+
+  // Handle Google signup success
+  const handleGoogleSignupSuccess = async (credentialResponse) => {
+    try {
+      const tokenId = credentialResponse.credential;
+      console.log("Google Token ID:", tokenId);
+
+      // Send the Google token to the backend
+      const { data } = await axios.post("http://localhost:5000/auth/google-signup", {
+        tokenId,
+      });
+
+      console.log("Google Signup Success:", data);
+      navigate("/login");
+    } catch (error) {
+      console.error("Google Signup Error:", error.response?.data || error.message);
     }
   };
 
@@ -85,6 +106,17 @@ const Signup = () => {
             Signup
           </button>
         </form>
+        <div className="text-center mt-4">
+          <h5 className="text-muted">Or signup with:</h5>
+        </div>
+        <div className="d-flex justify-content-center mt-3">
+          <GoogleOAuthProvider clientId={process.env.REACT_APP_GOOGLE_CLIENT_ID}>
+            <GoogleLogin
+              onSuccess={handleGoogleSignupSuccess}
+              onError={() => console.error("Google Signup Error")}
+            />
+          </GoogleOAuthProvider>
+        </div>
         <div className="text-center mt-4">
           <p className="text-muted">
             Already have an account?{" "}

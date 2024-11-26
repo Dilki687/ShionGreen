@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { GoogleOAuthProvider, GoogleLogin } from "@react-oauth/google";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
@@ -11,6 +11,8 @@ const Login = () => {
     email: "",
     password: "",
   });
+
+  const [errorMessage, setErrorMessage] = useState("");
 
   // Handle changes in the email and password fields
   const handleChange = (e) => {
@@ -31,32 +33,43 @@ const Login = () => {
       navigate("/admin");
     } catch (error) {
       console.error("Login Error:", error.response?.data || error.message);
+
+      // Update error message state based on server response
+      if (error.response && error.response.data) {
+        setErrorMessage(error.response.data.message); // Assuming the backend sends a `message` field
+      } else {
+        setErrorMessage("An unexpected error occurred. Please try again.");
+      }
     }
   };
 
   // Handle Google login success
   const handleGoogleLoginSuccess = async (credentialResponse) => {
     try {
+      const tokenId = credentialResponse.credential;
+      console.log("Token ID:", tokenId); // Log the token to ensure it's valid
+
       const { data } = await axios.post("http://localhost:5000/auth/google", {
-        tokenId: credentialResponse.credential,  // Send the token to the backend
+        tokenId, // Send the token ID to the backend
       });
-  
+
       console.log("Google Login Success:", data);
-  
-      // Save token or user data if needed
       localStorage.setItem("token", data.token);
-  
-      // Navigate to admin page or other pages after login
       navigate("/admin");
     } catch (error) {
       console.error("Google Login Error:", error);
+      setErrorMessage("Google login failed. Please try again.");
     }
-  };  
+  };
+  
 
   return (
     <div className="container d-flex justify-content-center align-items-center vh-100 bg-light">
       <div className="card shadow-lg p-4" style={{ width: "400px" }}>
         <h2 className="text-center mb-4">Login</h2>
+        {errorMessage && ( // Conditionally render the error message
+          <div className="alert alert-danger text-center">{errorMessage}</div>
+        )}
         <form onSubmit={handleSubmit}>
           <div className="mb-3">
             <label htmlFor="email" className="form-label">
@@ -96,12 +109,15 @@ const Login = () => {
           <h5 className="text-muted">Or login with:</h5>
         </div>
         <div className="d-flex justify-content-center mt-3">
-        <GoogleOAuthProvider clientId={process.env.REACT_APP_GOOGLE_CLIENT_ID}>
-      <GoogleLogin
-        onSuccess={handleGoogleLoginSuccess}
-        onError={() => console.error("Google Login Error")}
-      />
-    </GoogleOAuthProvider>
+          <GoogleOAuthProvider clientId={process.env.REACT_APP_GOOGLE_CLIENT_ID}>
+            <GoogleLogin
+              onSuccess={handleGoogleLoginSuccess}
+              onError={() => {
+                console.error("Google Login Error");
+                setErrorMessage("Google login failed. Please try again.");
+              }}
+            />
+          </GoogleOAuthProvider>
         </div>
       </div>
     </div>
