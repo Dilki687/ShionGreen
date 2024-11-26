@@ -20,46 +20,38 @@ const Login = () => {
   // Handle traditional login (email/password)
   const handleSubmit = async (e) => {
     e.preventDefault();
+    console.log("Login Data Submitted:", formData);
+
     try {
-      // Prepare the form data to be sent
-      const formData = {
-        email: e.target.email.value,
-        password: e.target.password.value,
-      };
-  
-      // Log the formData to ensure it's correct
-      console.log(formData);
-  
-      // Send the request to the backend
-      const { data } = await axios.post("http://localhost:5000/auth/login", formData);
+      const { data } = await axios.post(
+        "http://localhost:5000/auth/login",
+        formData
+      );
       console.log("Login Success:", data);
-  
-      // Save the token and navigate
-      localStorage.setItem("token", data.token);
       navigate("/admin");
     } catch (error) {
-      console.error("Login Error:", error);
+      console.error("Login Error:", error.response?.data || error.message);
     }
   };
-  
 
   // Handle Google login success
   const handleGoogleLoginSuccess = async (credentialResponse) => {
     try {
       const { data } = await axios.post("http://localhost:5000/auth/google", {
-        tokenId: credentialResponse.credential,
+        tokenId: credentialResponse.credential,  // Send the token to the backend
       });
+  
       console.log("Google Login Success:", data);
-
+  
       // Save token or user data if needed
       localStorage.setItem("token", data.token);
-
+  
       // Navigate to admin page or other pages after login
       navigate("/admin");
     } catch (error) {
       console.error("Google Login Error:", error);
     }
-  };
+  };  
 
   return (
     <div className="container d-flex justify-content-center align-items-center vh-100 bg-light">
@@ -104,12 +96,12 @@ const Login = () => {
           <h5 className="text-muted">Or login with:</h5>
         </div>
         <div className="d-flex justify-content-center mt-3">
-          <GoogleOAuthProvider clientId={process.env.REACT_APP_GOOGLE_CLIENT_ID}>
-            <GoogleLogin
-              onSuccess={handleGoogleLoginSuccess}
-              onError={() => console.error("Google Login Error")}
-            />
-          </GoogleOAuthProvider>
+        <GoogleOAuthProvider clientId={process.env.REACT_APP_GOOGLE_CLIENT_ID}>
+      <GoogleLogin
+        onSuccess={handleGoogleLoginSuccess}
+        onError={() => console.error("Google Login Error")}
+      />
+    </GoogleOAuthProvider>
         </div>
       </div>
     </div>

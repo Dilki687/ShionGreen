@@ -17,12 +17,17 @@ const Signup = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    console.log("Form Data Submitted:", formData);
+
     try {
-      const { data } = await axios.post("http://localhost:5000/auth/signup", formData);
+      const { data } = await axios.post(
+        "http://localhost:5000/auth/signup",
+        formData
+      );
       console.log("Signup Success:", data);
       navigate("/admin");
     } catch (error) {
-      console.error("Signup Error:", error);
+      console.error("Signup Error:", error.response?.data || error.message);
     }
   };
 
