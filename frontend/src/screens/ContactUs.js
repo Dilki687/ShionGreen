@@ -52,7 +52,7 @@ const ContactUs = () => {
               <div className="card-body">
                 <h5 className="card-title">{t("generalEnquiries")}</h5> {/* Dynamic translation */}
                 <p className="card-text">
-                  📞 +123-456-7890 <br /> 📧 info@shionspices.com
+                  📞 +8180-4781-7117 <br /> 
                 </p>
               </div>
             </div>
@@ -69,7 +69,7 @@ const ContactUs = () => {
               <div className="card-body">
                 <h5 className="card-title">{t("consumerEnquiries")}</h5> {/* Dynamic translation */}
                 <p className="card-text">
-                  📞 +123-456-7890 <br /> 📧 info@shionspices.com
+                  📞 +8170-1052-6962 <br /> 
                 </p>
               </div>
             </div>
@@ -86,7 +86,7 @@ const ContactUs = () => {
               <div className="card-body">
                 <h5 className="card-title">{t("generalEnquiries")}</h5> {/* Dynamic translation */}
                 <p className="card-text">
-                  📞 +123-456-7890 <br /> 📧 info@shionspices.com
+                📧 shionideals@gmail.com<br /> 
                 </p>
               </div>
             </div>
@@ -103,7 +103,7 @@ const ContactUs = () => {
               <div className="card-body">
                 <h5 className="card-title">{t("generalEnquiries")}</h5> {/* Dynamic translation */}
                 <p className="card-text">
-                  📞 +123-456-7890 <br /> 📧 info@shionspices.com
+                📧 shiongreen@gmail.com <br /> 
                 </p>
               </div>
             </div>
