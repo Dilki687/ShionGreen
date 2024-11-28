@@ -64,7 +64,7 @@ const HomePage = () => {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 2 }}
           >
-            {t("welcomeMessage")} {/* Use translation */}
+            {t("welcomeM")} {/* Use translation */}
           </motion.p>
           <button
             className="btn btn-primary btn-lg"
