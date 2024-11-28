@@ -12,7 +12,7 @@ const resources = {
       placeOrder: "Place Order",
       stayConnected: "Stay connected with us",
       questionsIssues: "HAVE SOME QUESTIONS, ISSUES OR COMMENTS?",
-      welcomeMessage: "Savor the unique blend of rich Ceylon cinnamon and aromatic spices, sourced directly from Sri Lanka.",
+      welcomeMessage: "Welcome! We are a leading provider of premium traditional spices, offering a range of products such as cinnamon and pepper for any inqueries, please fell free to reach out to us through the contact points listed below for your convenience.",
       generalEnquiries: "General Enquiries",
       consumerEnquiries: "Consumer Enquiries",
       footer: {
@@ -74,7 +74,7 @@ const resources = {
       placeOrder: "注文する",
       stayConnected: "私たちとつながりましょう",
       questionsIssues: "質問、問題、コメントはありますか？",
-      welcomeMessage: "スリランカから直接仕入れた、濃厚なセイロンシナモンと芳醇なスパイスのユニークなブレンドをお楽しみください。",
+      welcomeMessage: "ようこそ！私たちは高品質な伝統的スパイスを提供するリーディングプロバイダーです。シナモンやペッパーなど、さまざまな商品を取り揃えております。お問い合わせがございましたら、以下に記載された連絡先までお気軽にご連絡ください。",
       generalEnquiries: "一般のお問い合わせ",
       consumerEnquiries: "消費者のお問い合わせ",
       footer: {
