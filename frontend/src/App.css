@@ -21,7 +21,7 @@
 /* Main content area */
 .main-content {
   flex-grow: 1; /* Pushes the footer to the bottom when content is insufficient */
-  padding: 20px; /* Adjust padding as necessary */
+   /* Adjust padding as necessary */
 }
 
 /* Sidebar (optional) */
