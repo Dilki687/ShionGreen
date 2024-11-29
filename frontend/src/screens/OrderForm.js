@@ -16,13 +16,51 @@ const OrderForm = () => {
     customerType: "",
   });
 
+  const [validationErrors, setValidationErrors] = useState({});
+
   const handleInputChange = (e) => {
     const { name, value } = e.target;
     setFormData({ ...formData, [name]: value });
+    setValidationErrors({ ...validationErrors, [name]: "" }); // Clear error on input change
+  };
+
+  const validateForm = () => {
+    const errors = {};
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    const phoneRegex = /^\d{10,15}$/;
+
+    if (!formData.name.trim()) {
+      errors.name = t("Name Required");
+    }
+    if (!formData.email.trim() || !emailRegex.test(formData.email)) {
+      errors.email = t("Valid Email Required");
+    }
+    if (!formData.product) {
+      errors.product = t("Product Required");
+    }
+    if (!formData.quantity || isNaN(formData.quantity) || formData.quantity <= 0) {
+      errors.quantity = t("Valid Quantity Required");
+    }
+    if (!formData.phone || !phoneRegex.test(formData.phone)) {
+      errors.phone = t("Valid Phone Required");
+    }
+    if (!formData.address.trim()) {
+      errors.address = t("Address Required");
+    }
+    if (!formData.customerType) {
+      errors.customerType = t("Customer Type Required");
+    }
+
+    return errors;
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    const errors = validateForm();
+    if (Object.keys(errors).length > 0) {
+      setValidationErrors(errors);
+      return;
+    }
 
     try {
       const response = await fetch("http://localhost:5000/api/orders", {
@@ -37,7 +75,7 @@ const OrderForm = () => {
       if (response.ok) {
         swal({
           title: t("success"),
-          text: t("orderSuccess"),
+          text: `${t("orderSuccess")}\n\nWe will reply within 2-3 days via the provided email.`,
           icon: "success",
           button: t("okButton"),
         });
@@ -89,8 +127,8 @@ const OrderForm = () => {
                 value={formData.name}
                 onChange={handleInputChange}
                 placeholder={t("enterName")}
-                required
               />
+              {validationErrors.name && <p className="text-danger">{validationErrors.name}</p>}
             </div>
 
             {/* Email */}
@@ -106,8 +144,8 @@ const OrderForm = () => {
                 value={formData.email}
                 onChange={handleInputChange}
                 placeholder={t("enterEmail")}
-                required
               />
+              {validationErrors.email && <p className="text-danger">{validationErrors.email}</p>}
             </div>
 
             {/* Product & Quantity */}
@@ -122,7 +160,6 @@ const OrderForm = () => {
                   name="product"
                   value={formData.product}
                   onChange={handleInputChange}
-                  required
                 >
                   <option value="" disabled>
                     {t("selectProduct")}
@@ -130,6 +167,7 @@ const OrderForm = () => {
                   <option value="Cinnamon">{t("cinnamon")}</option>
                   <option value="Pepper">{t("pepper")}</option>
                 </select>
+                {validationErrors.product && <p className="text-danger">{validationErrors.product}</p>}
               </div>
               <div className="col-md-6">
                 <label htmlFor="quantity" className="form-label order-form-label">
@@ -143,8 +181,8 @@ const OrderForm = () => {
                   value={formData.quantity}
                   onChange={handleInputChange}
                   placeholder={t("enterQuantity")}
-                  required
                 />
+                {validationErrors.quantity && <p className="text-danger">{validationErrors.quantity}</p>}
               </div>
             </div>
 
@@ -162,8 +200,8 @@ const OrderForm = () => {
                   value={formData.phone}
                   onChange={handleInputChange}
                   placeholder={t("enterPhone")}
-                  required
                 />
+                {validationErrors.phone && <p className="text-danger">{validationErrors.phone}</p>}
               </div>
               <div className="col-md-6">
                 <label htmlFor="address" className="form-label order-form-label">
@@ -177,8 +215,8 @@ const OrderForm = () => {
                   value={formData.address}
                   onChange={handleInputChange}
                   placeholder={t("enterAddress")}
-                  required
                 />
+                {validationErrors.address && <p className="text-danger">{validationErrors.address}</p>}
               </div>
             </div>
 
@@ -193,7 +231,6 @@ const OrderForm = () => {
                 name="customerType"
                 value={formData.customerType}
                 onChange={handleInputChange}
-                required
               >
                 <option value="" disabled>
                   {t("selectCustomerType")}
@@ -201,6 +238,9 @@ const OrderForm = () => {
                 <option value="Individual">{t("individual")}</option>
                 <option value="Company">{t("company")}</option>
               </select>
+              {validationErrors.customerType && (
+                <p className="text-danger">{validationErrors.customerType}</p>
+              )}
             </div>
 
             {/* Description */}
