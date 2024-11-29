@@ -1,7 +1,8 @@
 import React, { useState } from "react";
 import "../styles/OrderForm.css";
 import swal from "sweetalert";
-import { useTranslation } from 'react-i18next';
+import { useTranslation } from "react-i18next";
+import { parsePhoneNumberFromString } from "libphonenumber-js";
 
 const OrderForm = () => {
   const { t } = useTranslation(); // Use the translation hook
@@ -27,10 +28,11 @@ const OrderForm = () => {
   const validateForm = () => {
     const errors = {};
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    const phoneRegex = /^\d{10,15}$/;
 
     if (!formData.name.trim()) {
-      errors.name = t("nameRequired");
+      errors.name = t("Name Required");
+    } else if (!/^[A-Za-z\s]+$/.test(formData.name)) {
+      errors.name = t("Name can only contain letters and spaces");
     }
     if (!formData.email.trim() || !emailRegex.test(formData.email)) {
       errors.email = t("validEmailRequired");
@@ -38,11 +40,21 @@ const OrderForm = () => {
     if (!formData.product) {
       errors.product = t("productRequired");
     }
-    if (!formData.quantity || isNaN(formData.quantity) || formData.quantity <= 0) {
-      errors.quantity = t("validQuantityRequired");
+    if (
+      !formData.quantity ||
+      isNaN(formData.quantity) ||
+      formData.quantity <= 0
+    ) {
+      errors.quantity = t("Valid Quantity Required");
     }
-    if (!formData.phone || !phoneRegex.test(formData.phone)) {
-      errors.phone = t("validPhoneRequired");
+    // Validate phone number for global formats
+    if (!formData.phone) {
+      errors.phone = t("Phone Number Required");
+    } else {
+      const phoneNumber = parsePhoneNumberFromString(formData.phone, "INTL"); // INTL for international
+      if (!phoneNumber || !phoneNumber.isValid()) {
+        errors.phone = t("Valid Phone Number Required");
+      }
     }
     if (!formData.address.trim()) {
       errors.address = t("addressRequired");
@@ -75,7 +87,9 @@ const OrderForm = () => {
       if (response.ok) {
         swal({
           title: t("success"),
-          text: `${t("orderSuccess")}\n\nWe will reply within 2-3 days via the provided email.`,
+          text: `${t(
+            "orderSuccess"
+          )}\n\nWe will reply within 2-3 days via the provided email.`,
           icon: "success",
           button: t("okButton"),
         });
@@ -112,7 +126,7 @@ const OrderForm = () => {
     <div className="container my-5 order-form-container">
       <div className="card shadow order-form-card">
         <div className="card-body">
-          <h2 className="text-center text-light mb-4">{t('placeOrder')}</h2>
+          <h2 className="text-center text-light mb-4">{t("placeOrder")}</h2>
           <form onSubmit={handleSubmit}>
             {/* Name */}
             <div className="mb-3">
@@ -128,7 +142,9 @@ const OrderForm = () => {
                 onChange={handleInputChange}
                 placeholder={t("enterName")}
               />
-              {validationErrors.name && <p className="text-danger">{validationErrors.name}</p>}
+              {validationErrors.name && (
+                <p className="text-danger">{validationErrors.name}</p>
+              )}
             </div>
 
             {/* Email */}
@@ -145,13 +161,18 @@ const OrderForm = () => {
                 onChange={handleInputChange}
                 placeholder={t("enterEmail")}
               />
-              {validationErrors.email && <p className="text-danger">{validationErrors.email}</p>}
+              {validationErrors.email && (
+                <p className="text-danger">{validationErrors.email}</p>
+              )}
             </div>
 
             {/* Product & Quantity */}
             <div className="row g-3 mb-3">
               <div className="col-md-6">
-                <label htmlFor="product" className="form-label order-form-label">
+                <label
+                  htmlFor="product"
+                  className="form-label order-form-label"
+                >
                   {t("product")}
                 </label>
                 <select
@@ -167,10 +188,15 @@ const OrderForm = () => {
                   <option value="Cinnamon">{t("cinnamon")}</option>
                   <option value="Pepper">{t("pepper")}</option>
                 </select>
-                {validationErrors.product && <p className="text-danger">{validationErrors.product}</p>}
+                {validationErrors.product && (
+                  <p className="text-danger">{validationErrors.product}</p>
+                )}
               </div>
               <div className="col-md-6">
-                <label htmlFor="quantity" className="form-label order-form-label">
+                <label
+                  htmlFor="quantity"
+                  className="form-label order-form-label"
+                >
                   {t("quantity")} (Kg)
                 </label>
                 <input
@@ -182,7 +208,9 @@ const OrderForm = () => {
                   onChange={handleInputChange}
                   placeholder={t("enterQuantity")}
                 />
-                {validationErrors.quantity && <p className="text-danger">{validationErrors.quantity}</p>}
+                {validationErrors.quantity && (
+                  <p className="text-danger">{validationErrors.quantity}</p>
+                )}
               </div>
             </div>
 
@@ -199,12 +227,18 @@ const OrderForm = () => {
                   name="phone"
                   value={formData.phone}
                   onChange={handleInputChange}
-                  placeholder={t("enterPhone")}
+                  placeholder={t("enterPhone") + " (e.g., +11234567890)"}
                 />
-                {validationErrors.phone && <p className="text-danger">{validationErrors.phone}</p>}
+
+                {validationErrors.phone && (
+                  <p className="text-danger">{validationErrors.phone}</p>
+                )}
               </div>
               <div className="col-md-6">
-                <label htmlFor="address" className="form-label order-form-label">
+                <label
+                  htmlFor="address"
+                  className="form-label order-form-label"
+                >
                   {t("address")}
                 </label>
                 <input
@@ -216,13 +250,18 @@ const OrderForm = () => {
                   onChange={handleInputChange}
                   placeholder={t("enterAddress")}
                 />
-                {validationErrors.address && <p className="text-danger">{validationErrors.address}</p>}
+                {validationErrors.address && (
+                  <p className="text-danger">{validationErrors.address}</p>
+                )}
               </div>
             </div>
 
             {/* Customer Type */}
             <div className="mb-3">
-              <label htmlFor="customerType" className="form-label order-form-label">
+              <label
+                htmlFor="customerType"
+                className="form-label order-form-label"
+              >
                 {t("customerType")}
               </label>
               <select
@@ -245,7 +284,10 @@ const OrderForm = () => {
 
             {/* Description */}
             <div className="mb-3">
-              <label htmlFor="description" className="form-label order-form-label">
+              <label
+                htmlFor="description"
+                className="form-label order-form-label"
+              >
                 {t("description")}
               </label>
               <textarea
