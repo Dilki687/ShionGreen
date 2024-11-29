@@ -13,10 +13,30 @@ const Footer = () => {
     navigate("/");
 
     setTimeout(() => {
-      const cinnamonSection = document.getElementById("cinnamonCarouselSection");
+      const cinnamonSection = document.getElementById(
+        "cinnamonCarouselSection"
+      );
       if (cinnamonSection) {
         const navbarHeight = 70; // Adjust for your navbar height
         const topOffset = cinnamonSection.offsetTop - navbarHeight;
+        window.scrollTo({
+          top: topOffset,
+          behavior: "smooth",
+        });
+      }
+    }, 0);
+  };
+
+  // Function to handle scroll to the About Us section
+  const handleScrollToAbout = (e) => {
+    e.preventDefault();
+    navigate("/");
+
+    setTimeout(() => {
+      const aboutSection = document.getElementById("aboutSection");
+      if (aboutSection) {
+        const navbarHeight = document.querySelector(".navbar").offsetHeight;
+        const topOffset = aboutSection.offsetTop - navbarHeight;
         window.scrollTo({
           top: topOffset,
           behavior: "smooth",
@@ -50,7 +70,13 @@ const Footer = () => {
           }
         `}
       </style>
-      <footer style={{ backgroundColor: "#113805", color: "white", padding: "20px 0" }}>
+      <footer
+        style={{
+          backgroundColor: "#113805",
+          color: "white",
+          padding: "20px 0",
+        }}
+      >
         <div className="container">
           <div className="row text-center">
             <div className="col-12 mb-3">
@@ -66,17 +92,29 @@ const Footer = () => {
               />
             </div>
             <div className="col-12">
-              <p className="mb-2">© {t("brandName")}. {t("footer.copyright")}</p>
+              <p className="mb-2">
+                © {t("brandName")}. {t("footer.copyright")}
+              </p>
             </div>
             <div className="col-12 mb-3">
               <div className="d-flex justify-content-center flex-wrap">
-                <a href="#privacy" className="text-white mx-2 text-decoration-none">
-                  {t("footer.privacy")}
+                <a
+                  href="#"
+                  className="text-white mx-2 text-decoration-none"
+                  onClick={handleScrollToAbout}
+                >
+                  {t("footer.about")}
                 </a>
-                <a href="#terms" className="text-white mx-2 text-decoration-none">
+                <a
+                  href="#terms"
+                  className="text-white mx-2 text-decoration-none"
+                >
                   {t("footer.terms")}
                 </a>
-                <a href="/contactus" className="text-white mx-2 text-decoration-none">
+                <a
+                  href="/contactus"
+                  className="text-white mx-2 text-decoration-none"
+                >
                   {t("footer.help")}
                 </a>
                 <a

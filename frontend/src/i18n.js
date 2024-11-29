@@ -19,7 +19,7 @@ const resources = {
       footer: {
         copyright: "All rights reserved",
         terms: "Terms of Service",
-        privacy: "Privacy Policy",
+        about: "About Us",
         help: "Help",
         products: "Products",
       },
@@ -82,7 +82,7 @@ const resources = {
       footer: {
         copyright: "すべての権利を保有します",
         terms: "利用規約",
-        privacy: "プライバシーポリシー",
+        about: "私たちについて",
         help: "ヘルプ",
         products: "製品",
       },
