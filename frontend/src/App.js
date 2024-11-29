@@ -11,6 +11,7 @@ import Sidebar from "./components/Sidebar";
 import Login from "./components/Login";
 import Signup from "./components/Signup";
 import "./i18n";
+import Products from "./screens/Products";
 
 function App() {
   return (
@@ -42,6 +43,7 @@ const MainLayout = () => {
             <Route path="/contactus" element={<ContactUs />} />
             <Route path="/orderform" element={<OrderForm />} />
             <Route path="/admin" element={<AdminPage />} />
+            <Route path="/products" element={<Products />} />
           </Routes>
         </main>
 

@@ -12,7 +12,7 @@ const NavBar = () => {
   const handleLanguageChange = (event) => {
     const selectedLanguage = event.target.value;
     i18n.changeLanguage(selectedLanguage); // Change the language globally
-    localStorage.setItem('language', selectedLanguage); // Store selected language in localStorage to persist language change
+    localStorage.setItem("language", selectedLanguage); // Store selected language in localStorage to persist language change
   };
 
   // Function to handle scroll to the About Us section
@@ -39,7 +39,9 @@ const NavBar = () => {
     navigate("/");
 
     setTimeout(() => {
-      const productsSection = document.getElementById("cinnamonCarouselSection");
+      const productsSection = document.getElementById(
+        "cinnamonCarouselSection"
+      );
       if (productsSection) {
         const navbarHeight = document.querySelector(".navbar").offsetHeight;
         const topOffset = productsSection.offsetTop - navbarHeight;
@@ -121,7 +123,7 @@ const NavBar = () => {
                 </a>
               </li>
               <li className="nav-item">
-                <a className="nav-link" href="#" onClick={handleScrollToProducts}>
+                <a className="nav-link" href="/products">
                   {t("products")}
                 </a>
               </li>
@@ -131,11 +133,12 @@ const NavBar = () => {
                 </a>
               </li>
             </ul>
-            <div className="d-flex justify-content-center align-items-center mt-3 mt-lg-0"
-            style={{
-    marginBottom: "10px", // Add space beneath the language button
-  }}
-  >
+            <div
+              className="d-flex justify-content-center align-items-center mt-3 mt-lg-0"
+              style={{
+                marginBottom: "10px", // Add space beneath the language button
+              }}
+            >
               <select
                 className="form-select form-select-sm bg-light border-0 w-auto"
                 value={i18n.language} // Set the currently selected language as the value

@@ -118,9 +118,8 @@ const Footer = () => {
                   {t("footer.help")}
                 </a>
                 <a
-                  href="#"
+                  href="/products"
                   className="text-white mx-2 text-decoration-none"
-                  onClick={handleScrollToProducts}
                 >
                   {t("footer.products")}
                 </a>

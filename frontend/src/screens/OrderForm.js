@@ -35,10 +35,10 @@ const OrderForm = () => {
       errors.name = t("Name can only contain letters and spaces");
     }
     if (!formData.email.trim() || !emailRegex.test(formData.email)) {
-      errors.email = t("validEmailRequired");
+      errors.email = t("Valid Email Required");
     }
     if (!formData.product) {
-      errors.product = t("productRequired");
+      errors.product = t("Product Required");
     }
     if (
       !formData.quantity ||
@@ -57,10 +57,10 @@ const OrderForm = () => {
       }
     }
     if (!formData.address.trim()) {
-      errors.address = t("addressRequired");
+      errors.address = t("Address Required");
     }
     if (!formData.customerType) {
-      errors.customerType = t("customerTypeRequired");
+      errors.customerType = t("Customer Type Required");
     }
 
     return errors;
