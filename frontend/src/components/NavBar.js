@@ -79,8 +79,8 @@ const NavBar = () => {
             <span
               className="fw-bold text-white"
               style={{
-                fontFamily: "Poppins, Lato",
-                fontSize: "1.5rem",
+                fontFamily: "'Raleway', sans-serif",
+                fontSize: "1rem",
               }}
             >
               {t("brandName")}
