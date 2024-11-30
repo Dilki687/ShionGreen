@@ -30,25 +30,25 @@ const OrderForm = () => {
     const phoneRegex = /^\d{10,15}$/;
 
     if (!formData.name.trim()) {
-      errors.name = t("Name Required");
+      errors.name = t("nameRequired");
     }
     if (!formData.email.trim() || !emailRegex.test(formData.email)) {
-      errors.email = t("Valid Email Required");
+      errors.email = t("validEmailRequired");
     }
     if (!formData.product) {
-      errors.product = t("Product Required");
+      errors.product = t("productRequired");
     }
     if (!formData.quantity || isNaN(formData.quantity) || formData.quantity <= 0) {
-      errors.quantity = t("Valid Quantity Required");
+      errors.quantity = t("validQuantityRequired");
     }
     if (!formData.phone || !phoneRegex.test(formData.phone)) {
-      errors.phone = t("Valid Phone Required");
+      errors.phone = t("validPhoneRequired");
     }
     if (!formData.address.trim()) {
-      errors.address = t("Address Required");
+      errors.address = t("addressRequired");
     }
     if (!formData.customerType) {
-      errors.customerType = t("Customer Type Required");
+      errors.customerType = t("customerTypeRequired");
     }
 
     return errors;
