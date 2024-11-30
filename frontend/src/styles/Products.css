@@ -1,0 +1,163 @@
+.products-container {
+  margin-top: 40px;
+  padding: 50px 20px;
+  /* background-color: #f5f5dc; */
+  background-color: #F3EDE7;
+}
+
+.products-title {
+  font-size: 2.5rem;
+  color: #333;
+  margin-bottom: 30px;
+}
+
+.product-section {
+  padding: 60px 20px;
+}
+
+.product-category {
+  font-family: "Georgia", serif;
+  font-size: 3rem; /* Large font size */
+  font-style: italic;
+  text-transform: uppercase; /* Optional: Makes the text uppercase */
+  letter-spacing: 3px; /* Optional: Adds spacing between letters */
+  color: #113805; /* Your desired color */
+  margin-bottom: 30px; /* Space below the header */
+}
+
+.product-card {
+  border: 1px solid #ddd;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.product-card:hover {
+  transform: scale(1.05);
+  box-shadow: 0 8px 12px rgba(0, 0, 0, 0.2);
+}
+
+.card-img-top {
+  width: 100%; /* Ensure the image spans the full width of the card */
+  height: 200px; /* Maintain a consistent height */
+  object-fit: contain; /* Ensures the image fits without cropping */
+  border-top-left-radius: 5px; /* Match card corner radius */
+  border-top-right-radius: 5px;
+}
+
+.card-title {
+  font-family: "Dancing Script", cursive;
+  font-size: 1.3rem;
+  font-weight: 600;
+  text-align: center;
+  color: #333;
+}
+
+.card-text {
+  font-family: "Merriweather", serif;
+  text-align: center;
+  font-size: 1rem;
+  color: #555;
+}
+
+.additional-info {
+  padding: 60px 20px;
+  padding-top: 25px;
+}
+
+.static-sections {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 30px;
+  margin-top: 30px;
+}
+
+.feature-item,
+.use-item {
+  background-color: #f9f9f9;
+  padding: 20px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  text-align: center;
+}
+
+.feature-item h4,
+.use-item h4 {
+  font-size: 1.3rem;
+  color: #113805;
+  margin-bottom: 15px;
+  font-weight: 600;
+}
+
+.feature-item p,
+.use-item p {
+  font-size: 1rem;
+  color: #555;
+}
+
+.additional-title {
+  font-size: 2rem;
+  font-weight: bold;
+  margin-bottom: 40px;
+  margin-top: 50px;
+  color: #113805;
+}
+
+.btn-primary {
+  background-color: #113805;
+  border-color: #113805;
+  padding: 12px 30px;
+  font-size: 1.1rem;
+  letter-spacing: 2px;
+  border-radius: 30px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  transition: background-color 0.3s ease;
+}
+
+.btn-primary:hover {
+  background-color: #0a2c05;
+  border-color: #0a2c05;
+}
+
+@media (max-width: 768px) {
+  .static-sections {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .feature-item,
+  .use-item {
+    width: 100%;
+    margin-bottom: 20px;
+  }
+}
+
+.info-img {
+  width: 120px; /* Adjust the size as needed */
+  height: 120px; /* Ensure width and height are equal for a circle */
+  border-radius: 50%; /* Makes the image circular */
+  object-fit: cover; /* Ensures the image fills the circular container without distortion */
+  border: 2px solid #ddd; /* Optional: Add a border for aesthetics */
+  margin: 0 auto 15px; /* Centers the image and adds spacing below */
+  display: block; /* Centers the image horizontally */
+}
+
+.info-card {
+  text-align: center; /* Align text and image in the center */
+  margin-bottom: 20px; /* Add space between cards */
+  margin-top: 50px;
+}
+
+.info-title {
+  font-family: "Playfair Display", serif;
+  font-size: 1.2rem; /* Adjust font size */
+  color: #333;
+  margin-top: 10px; /* Add space above the title */
+}
+
+.info-text {
+  font-size: 1rem;
+  color: #555;
+  margin-top: 5px; /* Add space above the paragraph */
+}
