@@ -3,15 +3,8 @@ import { useNavigate } from "react-router-dom";
 import { motion } from "framer-motion";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "../styles/HomePage.css";
-import cinnamonImage1 from "../images/cinnamon1.jpeg";
-import cinnamonImage2 from "../images/cinnamon2.jpeg";
-import cinnamonImage3 from "../images/cinnamon3.jpeg";
-import cinnamonImage4 from "../images/cinnamon4.jpeg";
-import pepperImage1 from "../images/pepper1.jpeg";
-import pepperImage2 from "../images/pepper2.jpeg";
-import pepperImage3 from "../images/pepper3.jpeg";
-import pepperImage4 from "../images/pepper4.jpeg";
-import pepperImage5 from "../images/pepper5.jpeg";
+import cinnamonbanner from "../videos/cinnomanbanner.mp4";
+import pepperbanner from "../videos/pepperbanner.mp4";
 import bannervideo from "../videos/bannervideo.mp4";
 import logo2 from "../images/logo2.jpeg";
 import { useTranslation } from "react-i18next"; // Import useTranslation hook
@@ -201,161 +194,74 @@ const HomePage = () => {
           </p>
         </div>
       </div>
-{/* Sliding Images Section for Cinnamon */}
+     {/* Video Section for Cinnamon */}
 <div id="cinnamonCarouselSection" className="container mt-5">
         <h2 className="text-center mb-4" style={{ fontFamily: "'Raleway', sans-serif",fontWeight: "700",letterSpacing: "0.1em", }}>{t('cinnamon')}</h2>
         <div
-          id="cinnamonCarousel"
-          className="carousel slide"
-          data-bs-ride="carousel"
-          data-bs-interval="2000"
-        >
-          <div className="carousel-inner">
-            <div className="carousel-item active">
-              <img
-                src={cinnamonImage1}
-                className="d-block w-100"
-                alt="Cinnamon 1"
-                style={{ height: "400px", objectFit: "cover" }}
-              />
-            </div>
-            <div className="carousel-item">
-              <img
-                src={cinnamonImage2}
-                className="d-block w-100"
-                alt="Cinnamon 2"
-                style={{ height: "400px", objectFit: "cover" }}
-              />
-            </div>
-            <div className="carousel-item">
-              <img
-                src={cinnamonImage3}
-                className="d-block w-100"
-                alt="Cinnamon 3"
-                style={{ height: "400px", objectFit: "cover" }}
-              />
-            </div>
-            <div className="carousel-item">
-              <img
-                src={cinnamonImage4}
-                className="d-block w-100"
-                alt="Cinnamon 4"
-                style={{ height: "400px", objectFit: "cover" }}
-              />
-            </div>
-          </div>
-          <button
-            className="carousel-control-prev"
-            type="button"
-            data-bs-target="#cinnamonCarousel"
-            data-bs-slide="prev"
-          >
-            <span
-              className="carousel-control-prev-icon"
-              aria-hidden="true"
-            ></span>
-            <span className="visually-hidden">{t('previous')}</span>
-          </button>
-          <button
-            className="carousel-control-next"
-            type="button"
-            data-bs-target="#cinnamonCarousel"
-            data-bs-slide="next"
-          >
-            <span
-              className="carousel-control-next-icon"
-              aria-hidden="true"
-            ></span>
-            <span className="visually-hidden">{t('next')}</span>
-          </button>
-        </div>
+  id="cinnamonVideoBanner"
+  style={{
+    position: "relative",
+    width: "100%",
+    height: "500px",
+    overflow: "hidden",
+  }}
+>
+  <video
+    className="d-block w-100"
+    style={{ objectFit: "cover" }}
+    autoPlay
+    loop
+    muted
+    playsInline
+  >
+    <source src={cinnamonbanner} type="video/mp4" />
+    Your browser does not support the video tag.
+  </video>
+  </div>
 
         <p className="slider-paragraph">
           {t('cinnamonParagraph')}
         </p>
       </div>
 
-      {/* Sliding Images Section for Pepper */}
-      <div id="pepperCarouselSection" className="container mt-5">
-        <h2 className="text-center mb-4" style={{ fontFamily: "'Raleway', sans-serif",fontWeight: "700",letterSpacing: "0.1em", }}>{t('pepper')}</h2>
-        <div
-          id="pepperCarousel"
-          className="carousel slide"
-          data-bs-ride="carousel"
-          data-bs-interval="2000"
-        >
-          <div className="carousel-inner">
-            <div className="carousel-item active">
-              <img
-                src={pepperImage1}
-                className="d-block w-100"
-                alt="Pepper 1"
-                style={{ height: "400px", objectFit: "cover" }}
-              />
-            </div>
-            <div className="carousel-item">
-              <img
-                src={pepperImage2}
-                className="d-block w-100"
-                alt="Pepper 2"
-                style={{ height: "400px", objectFit: "cover" }}
-              />
-            </div>
-            <div className="carousel-item">
-              <img
-                src={pepperImage3}
-                className="d-block w-100"
-                alt="Pepper 3"
-                style={{ height: "400px", objectFit: "cover" }}
-              />
-            </div>
-            <div className="carousel-item">
-              <img
-                src={pepperImage4}
-                className="d-block w-100"
-                alt="Pepper 4"
-                style={{ height: "400px", objectFit: "cover" }}
-              />
-            </div>
-            <div className="carousel-item">
-              <img
-                src={pepperImage5}
-                className="d-block w-100"
-                alt="Pepper 5"
-                style={{ height: "400px", objectFit: "cover" }}
-              />
-            </div>
-          </div>
-          <button
-            className="carousel-control-prev"
-            type="button"
-            data-bs-target="#pepperCarousel"
-            data-bs-slide="prev"
-          >
-            <span
-              className="carousel-control-prev-icon"
-              aria-hidden="true"
-            ></span>
-            <span className="visually-hidden">{t('previous')}</span>
-          </button>
-          <button
-            className="carousel-control-next"
-            type="button"
-            data-bs-target="#pepperCarousel"
-            data-bs-slide="next"
-          >
-            <span
-              className="carousel-control-next-icon"
-              aria-hidden="true"
-            ></span>
-            <span className="visually-hidden">{t('next')}</span>
-          </button>
-        </div>
+    {/* Sliding Images Section for Pepper */}
+<div id="pepperCarouselSection" className="container mt-5">
+  <h2
+    className="text-center mb-4"
+    style={{
+      fontFamily: "'Raleway', sans-serif",
+      fontWeight: "700",
+      letterSpacing: "0.1em",
+    }}
+  >
+    {t('pepper')}
+  </h2>
+  {/* Pepper Video Banner */}
+  <div
+    id="pepperVideoBanner"
+    style={{
+      position: "relative",
+      width: "100%",
+      height: "500px",
+      overflow: "hidden",
+    }}
+  >
+    <video
+      className="d-block w-100"
+      style={{ objectFit: "cover" }}
+      autoPlay
+      loop
+      muted
+      playsInline
+    >
+      <source src={pepperbanner} type="video/mp4" />
+      Your browser does not support the video tag.
+    </video>
+  </div>
+  {/* Pepper Paragraph */}
+  <p className="slider-paragraph">{t('pepperParagraph')}</p>
+</div>
 
-        <p className="slider-paragraph">
-          {t('pepperParagraph')}
-        </p>
-      </div>
 
       {/* Our Brands Section */}
       <div className="container mt-5 text-center">
@@ -377,6 +283,7 @@ const HomePage = () => {
         </div>
       </div>
     </div>
+    
   );
 };
 
