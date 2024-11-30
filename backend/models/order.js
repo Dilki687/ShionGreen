@@ -13,7 +13,8 @@ const orderSchema = new mongoose.Schema(
       type: String, 
       enum: ['Individual', 'Company'], 
       required: true 
-    }, // New field for customer type
+    }, 
+    productOptions: [{ type: String }],
   },
   { timestamps: true }
 );

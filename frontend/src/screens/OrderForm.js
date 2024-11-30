@@ -15,14 +15,43 @@ const OrderForm = () => {
     address: "",
     description: "",
     customerType: "",
+    productOptions: [],
   });
 
   const [validationErrors, setValidationErrors] = useState({});
+  const productOptionsMap = {
+    Cinnamon: ["Cinnamon Sticks", "Ground Cinnamon", "Cinnamon Chips"],
+    Pepper: ["White Pepper", "Black Pepper"],
+  };
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
     setFormData({ ...formData, [name]: value });
     setValidationErrors({ ...validationErrors, [name]: "" }); // Clear error on input change
+  };
+
+  // const handleOptionChange = (option) => {
+  //   const currentOptions = [...formData.productOptions];
+  //   if (currentOptions.includes(option)) {
+  //     setFormData({
+  //       ...formData,
+  //       productOptions: currentOptions.filter((opt) => opt !== option),
+  //     });
+  //   } else {
+  //     setFormData({
+  //       ...formData,
+  //       productOptions: [...currentOptions, option],
+  //     });
+  //   }
+  // };
+
+  const handleProductChange = (e) => {
+    const selectedProduct = e.target.value;
+    setFormData({
+      ...formData,
+      product: selectedProduct,
+      productOptions: [],
+    });
   };
 
   const validateForm = () => {
@@ -61,6 +90,12 @@ const OrderForm = () => {
     }
     if (!formData.customerType) {
       errors.customerType = t("Customer Type Required");
+    }
+    if (
+      formData.product &&
+      (!formData.productOptions || formData.productOptions.length === 0)
+    ) {
+      errors.productOptions = t("Please select at least one option");
     }
 
     return errors;
@@ -102,6 +137,7 @@ const OrderForm = () => {
           address: "",
           description: "",
           customerType: "",
+          productOptions: [],
         });
       } else {
         swal({
@@ -143,7 +179,7 @@ const OrderForm = () => {
                 placeholder={t("enterName")}
               />
               {validationErrors.name && (
-                <p className="text-danger">{validationErrors.name}</p>
+                <p style={{ color: "red" }}>{validationErrors.name}</p>
               )}
             </div>
 
@@ -162,7 +198,7 @@ const OrderForm = () => {
                 placeholder={t("enterEmail")}
               />
               {validationErrors.email && (
-                <p className="text-danger">{validationErrors.email}</p>
+                <p style={{ color: "red" }}>{validationErrors.email}</p>
               )}
             </div>
 
@@ -180,7 +216,7 @@ const OrderForm = () => {
                   id="product"
                   name="product"
                   value={formData.product}
-                  onChange={handleInputChange}
+                  onChange={handleProductChange}
                 >
                   <option value="" disabled>
                     {t("selectProduct")}
@@ -189,7 +225,36 @@ const OrderForm = () => {
                   <option value="Pepper">{t("Pepper")}</option>
                 </select>
                 {validationErrors.product && (
-                  <p className="text-danger">{validationErrors.product}</p>
+                  <p style={{ color: "red" }}>{validationErrors.product}</p>
+                )}
+
+                {/* Sub-options based on product */}
+                {formData.product && (
+                  <div style={{ marginTop: "20px" }}>
+                    <label>{t("Select Options")}</label>
+                    {productOptionsMap[formData.product].map((option) => (
+                      <div key={option} style={{ marginTop: "2px" }}>
+                        <input
+                          type="radio"
+                          name="productOption"
+                          value={option}
+                          checked={formData.productOptions.includes(option)}
+                          onChange={() =>
+                            setFormData({
+                              ...formData,
+                              productOptions: [option],
+                            })
+                          }
+                        />
+                        {option}
+                      </div>
+                    ))}
+                    {validationErrors.productOptions && (
+                      <p style={{ color: "red" }}>
+                        {validationErrors.productOptions}
+                      </p>
+                    )}
+                  </div>
                 )}
               </div>
               <div className="col-md-6">
@@ -209,7 +274,7 @@ const OrderForm = () => {
                   placeholder={t("enterQuantity")}
                 />
                 {validationErrors.quantity && (
-                  <p className="text-danger">{validationErrors.quantity}</p>
+                  <p style={{ color: "red" }}>{validationErrors.quantity}</p>
                 )}
               </div>
             </div>
@@ -231,7 +296,7 @@ const OrderForm = () => {
                 />
 
                 {validationErrors.phone && (
-                  <p className="text-danger">{validationErrors.phone}</p>
+                  <p style={{ color: "red" }}>{validationErrors.phone}</p>
                 )}
               </div>
               <div className="col-md-6">
@@ -251,7 +316,7 @@ const OrderForm = () => {
                   placeholder={t("enterAddress")}
                 />
                 {validationErrors.address && (
-                  <p className="text-danger">{validationErrors.address}</p>
+                  <p style={{ color: "red" }}>{validationErrors.address}</p>
                 )}
               </div>
             </div>
@@ -278,7 +343,7 @@ const OrderForm = () => {
                 <option value="Company">{t("company")}</option>
               </select>
               {validationErrors.customerType && (
-                <p className="text-danger">{validationErrors.customerType}</p>
+                <p style={{ color: "red" }}>{validationErrors.customerType}</p>
               )}
             </div>
 
