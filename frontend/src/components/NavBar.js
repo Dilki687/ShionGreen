@@ -124,7 +124,7 @@ const NavBar = () => {
               </li>
               <li className="nav-item">
                 <a className="nav-link" href="/products">
-                  {t("products")}
+                  {t("productsnav")}
                 </a>
               </li>
               <li className="nav-item">
