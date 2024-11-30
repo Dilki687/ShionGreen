@@ -57,7 +57,7 @@ const NavBar = () => {
         className="navbar navbar-expand-lg navbar-dark sticky-navbar"
         style={{
           backgroundColor: "#113805",
-          height: "80px",
+          height: "70px",
           position: "fixed",
           top: 0,
           width: "100%",
