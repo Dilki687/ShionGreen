@@ -57,7 +57,7 @@ const NavBar = () => {
         className="navbar navbar-expand-lg navbar-dark sticky-navbar"
         style={{
           backgroundColor: "#113805",
-          height: "70px",
+          height: "80px",
           position: "fixed",
           top: 0,
           width: "100%",
@@ -131,7 +131,11 @@ const NavBar = () => {
                 </a>
               </li>
             </ul>
-            <div className="d-flex justify-content-center align-items-center mt-3 mt-lg-0">
+            <div className="d-flex justify-content-center align-items-center mt-3 mt-lg-0"
+            style={{
+    marginBottom: "10px", // Add space beneath the language button
+  }}
+  >
               <select
                 className="form-select form-select-sm bg-light border-0 w-auto"
                 value={i18n.language} // Set the currently selected language as the value
