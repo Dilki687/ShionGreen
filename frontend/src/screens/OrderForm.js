@@ -185,8 +185,8 @@ const OrderForm = () => {
                   <option value="" disabled>
                     {t("selectProduct")}
                   </option>
-                  <option value="Cinnamon">{t("cinnamon")}</option>
-                  <option value="Pepper">{t("pepper")}</option>
+                  <option value="Cinnamon">{t("Cinnamon")}</option>
+                  <option value="Pepper">{t("Pepper")}</option>
                 </select>
                 {validationErrors.product && (
                   <p className="text-danger">{validationErrors.product}</p>
