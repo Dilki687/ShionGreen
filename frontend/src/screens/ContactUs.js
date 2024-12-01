@@ -2,10 +2,10 @@ import React from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "../styles/ContactUs.css";
 import { motion } from "framer-motion";
-import { useTranslation } from "react-i18next";  // Import useTranslation hook
+import { useTranslation } from "react-i18next"; // Import useTranslation hook
 
 const ContactUs = () => {
-  const { t } = useTranslation();  // Initialize the translation function
+  const { t } = useTranslation(); // Initialize the translation function
 
   return (
     <div className="contact-us">
@@ -40,63 +40,62 @@ const ContactUs = () => {
         </motion.p>
 
         {/* Contact Details Section */}
-        <div className="row text-center">
-          {/* General Enquiries Card */}
-          <motion.div
-            className="col-md-6 col-lg-3 mb-4"
-            initial={{ opacity: 0, x: -100 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.7, delay: 1.5 }}
-            
-          >
-            <div className="card border-0 shadow-sm">
-              <div className="card-body">
-                <h5 className="card-title">{t("generalEnquiries")}</h5> {/* Dynamic translation */}
-                <p className="card-text">
-                  📞 +8180-4781-7117 <br /> 
-                </p>
+        <div className="cards-container">
+          <div className="row text-center">
+            {/* General Enquiries Card */}
+            <motion.div
+              className="col-md-6 col-lg-3 mb-4"
+              initial={{ opacity: 0, x: -100 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.7, delay: 1.5 }}
+            >
+              <div className="card border-0 shadow-sm">
+                <div className="card-body">
+                  <h5 className="card-title">{t("generalEnquiries")}</h5>{" "}
+                  {/* Dynamic translation */}
+                  <p className="card-text">
+                    📞 +8180-4781-7117 <br />
+                  </p>
+                </div>
               </div>
-            </div>
-          </motion.div>
+            </motion.div>
 
-      
-
-          {/* Another General Enquiries Card */}
-<motion.div
-  className="col-md-6 col-lg-3 mb-4"
-  initial={{ opacity: 0, x: -100 }}
-  animate={{ opacity: 1, x: 0 }}
-  transition={{ duration: 0.7, delay: 1.9 }}
-
->
-  <div className="card border-0 shadow-sm">
-    <div className="card-body">
-      <h5 className="card-title">{t("generalEnquiries")}</h5> {/* Dynamic translation */}
-      <p className="card-text">
-        📧 shiongreeninfo@gmail.com<br />
-      </p>
-    </div>
-  </div>
-</motion.div>
-    {/* Consumer Enquiries Card */}
-    <motion.div
-            className="col-md-6 col-lg-3 mb-4"
-            initial={{ opacity: 0, x: -100 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.7, delay: 1.7 }}
-            
-          >
-            <div className="card border-0 shadow-sm">
-              <div className="card-body">
-                <h5 className="card-title">{t("generalEnquiries")}</h5> {/* Dynamic translation */}
-                <p className="card-text">
-                  📞 +8170-1052-6962 <br /> 
-                </p>
+            {/* Another General Enquiries Card */}
+            <motion.div
+              className="col-md-6 col-lg-3 mb-4"
+              initial={{ opacity: 0, x: -100 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.7, delay: 1.9 }}
+            >
+              <div className="card border-0 shadow-sm">
+                <div className="card-body">
+                  <h5 className="card-title">{t("generalEnquiries")}</h5>{" "}
+                  {/* Dynamic translation */}
+                  <p className="card-text">
+                    📧 shiongreeninfo@gmail.com
+                    <br />
+                  </p>
+                </div>
               </div>
-            </div>
-          </motion.div>
-
-
+            </motion.div>
+            {/* Consumer Enquiries Card */}
+            <motion.div
+              className="col-md-6 col-lg-3 mb-4"
+              initial={{ opacity: 0, x: -100 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.7, delay: 1.7 }}
+            >
+              <div className="card border-0 shadow-sm">
+                <div className="card-body">
+                  <h5 className="card-title">{t("generalEnquiries")}</h5>{" "}
+                  {/* Dynamic translation */}
+                  <p className="card-text">
+                    📞 +8170-1052-6962 <br />
+                  </p>
+                </div>
+              </div>
+            </motion.div>
+          </div>
         </div>
       </div>
     </div>
