@@ -47,6 +47,7 @@ const ContactUs = () => {
             initial={{ opacity: 0, x: -100 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.7, delay: 1.5 }}
+            
           >
             <div className="card border-0 shadow-sm">
               <div className="card-body">
@@ -58,16 +59,36 @@ const ContactUs = () => {
             </div>
           </motion.div>
 
-          {/* Consumer Enquiries Card */}
-          <motion.div
+      
+
+          {/* Another General Enquiries Card */}
+<motion.div
+  className="col-md-6 col-lg-3 mb-4"
+  initial={{ opacity: 0, x: -100 }}
+  animate={{ opacity: 1, x: 0 }}
+  transition={{ duration: 0.7, delay: 1.9 }}
+
+>
+  <div className="card border-0 shadow-sm">
+    <div className="card-body">
+      <h5 className="card-title">{t("generalEnquiries")}</h5> {/* Dynamic translation */}
+      <p className="card-text">
+        📧 shiongreeninfo@gmail.com<br />
+      </p>
+    </div>
+  </div>
+</motion.div>
+    {/* Consumer Enquiries Card */}
+    <motion.div
             className="col-md-6 col-lg-3 mb-4"
             initial={{ opacity: 0, x: -100 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.7, delay: 1.7 }}
+            
           >
             <div className="card border-0 shadow-sm">
               <div className="card-body">
-                <h5 className="card-title">{t("consumerEnquiries")}</h5> {/* Dynamic translation */}
+                <h5 className="card-title">{t("generalEnquiries")}</h5> {/* Dynamic translation */}
                 <p className="card-text">
                   📞 +8170-1052-6962 <br /> 
                 </p>
@@ -75,39 +96,7 @@ const ContactUs = () => {
             </div>
           </motion.div>
 
-          {/* Another General Enquiries Card */}
-          <motion.div
-            className="col-md-6 col-lg-3 mb-4"
-            initial={{ opacity: 0, x: -100 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.7, delay: 1.9 }}
-          >
-            <div className="card border-0 shadow-sm">
-              <div className="card-body">
-                <h5 className="card-title">{t("generalEnquiries")}</h5> {/* Dynamic translation */}
-                <p className="card-text">
-                📧 shionideals@gmail.com<br /> 
-                </p>
-              </div>
-            </div>
-          </motion.div>
 
-          {/* Another General Enquiries Card */}
-          <motion.div
-            className="col-md-6 col-lg-3 mb-4"
-            initial={{ opacity: 0, x: -100 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.7, delay: 2.1 }}
-          >
-            <div className="card border-0 shadow-sm">
-              <div className="card-body">
-                <h5 className="card-title">{t("generalEnquiries")}</h5> {/* Dynamic translation */}
-                <p className="card-text">
-                📧 shiongreen@gmail.com <br /> 
-                </p>
-              </div>
-            </div>
-          </motion.div>
         </div>
       </div>
     </div>

@@ -16,9 +16,9 @@
 }
 
 .product-category {
-  font-family: "Georgia", serif;
+  font-family: 'Montserrat', sans-serif;
   font-size: 3rem; /* Large font size */
-  font-style: italic;
+  font-weight: "900"; 
   text-transform: uppercase; /* Optional: Makes the text uppercase */
   letter-spacing: 3px; /* Optional: Adds spacing between letters */
   color: #113805; /* Your desired color */

@@ -127,9 +127,7 @@ const Footer = () => {
             </div>
             <div className="col-12">
               <div className="d-flex justify-content-center flex-wrap">
-                <a href="#youtube" className="text-white mx-2">
-                  <i className="fab fa-youtube fa-lg"></i>
-                </a>
+              
                 <a href="#twitter" className="text-white mx-2">
                   <i className="fab fa-twitter fa-lg"></i>
                 </a>
