@@ -196,13 +196,14 @@ const HomePage = () => {
       </div>
      {/* Video Section for Cinnamon */}
 <div id="cinnamonCarouselSection" className="container mt-5">
+  
         <h2 className="text-center mb-4" style={{ fontFamily: "'Raleway', sans-serif",fontWeight: "700",letterSpacing: "0.1em", }}>{t('cinnamon')}</h2>
         <div
   id="cinnamonVideoBanner"
   style={{
     position: "relative",
     width: "100%",
-    height: "500px",
+    height: "100%",
     overflow: "hidden",
   }}
 >
@@ -218,7 +219,6 @@ const HomePage = () => {
     Your browser does not support the video tag.
   </video>
   </div>
-
         <p className="slider-paragraph">
           {t('cinnamonParagraph')}
         </p>
@@ -242,7 +242,7 @@ const HomePage = () => {
     style={{
       position: "relative",
       width: "100%",
-      height: "500px",
+      height: "100%",
       overflow: "hidden",
     }}
   >
