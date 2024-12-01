@@ -20,8 +20,8 @@ const OrderForm = () => {
 
   const [validationErrors, setValidationErrors] = useState({});
   const productOptionsMap = {
-    Cinnamon: ["Cinnamon Sticks", "Ground Cinnamon", "Cinnamon Chips"],
-    Pepper: ["White Pepper", "Black Pepper"],
+    Cinnamon: [t("Cinnamon_Sticks"), t("Ground_Cinnamon"), t("Cinnamon_Chips")],
+    Pepper: [t("White_Pepper"), t("Black_Pepper")],
   };
 
   const handleInputChange = (e) => {
@@ -59,43 +59,43 @@ const OrderForm = () => {
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
     if (!formData.name.trim()) {
-      errors.name = t("Name Required");
+      errors.name = t("NameRequired");
     } else if (!/^[A-Za-z\s]+$/.test(formData.name)) {
-      errors.name = t("Name can only contain letters and spaces");
+      errors.name = t("Namecanonlycontainlettersandspaces");
     }
     if (!formData.email.trim() || !emailRegex.test(formData.email)) {
-      errors.email = t("Valid Email Required");
+      errors.email = t("ValidEmailRequired");
     }
     if (!formData.product) {
-      errors.product = t("Product Required");
+      errors.product = t("ProductRequired");
     }
     if (
       !formData.quantity ||
       isNaN(formData.quantity) ||
       formData.quantity <= 0
     ) {
-      errors.quantity = t("Valid Quantity Required");
+      errors.quantity = t("ValidQuantityRequired");
     }
     // Validate phone number for global formats
     if (!formData.phone) {
-      errors.phone = t("Phone Number Required");
+      errors.phone = t("PhoneNumberRequired");
     } else {
       const phoneNumber = parsePhoneNumberFromString(formData.phone, "INTL"); // INTL for international
       if (!phoneNumber || !phoneNumber.isValid()) {
-        errors.phone = t("Valid Phone Number Required");
+        errors.phone = t("ValidPhoneRequired");
       }
     }
     if (!formData.address.trim()) {
-      errors.address = t("Address Required");
+      errors.address = t("AddressRequired");
     }
     if (!formData.customerType) {
-      errors.customerType = t("Customer Type Required");
+      errors.customerType = t("CustomerTypeRequired");
     }
     if (
       formData.product &&
       (!formData.productOptions || formData.productOptions.length === 0)
     ) {
-      errors.productOptions = t("Please select at least one option");
+      errors.productOptions = t("Pleaseselectatleastoneoption");
     }
 
     return errors;
@@ -231,7 +231,7 @@ const OrderForm = () => {
                 {/* Sub-options based on product */}
                 {formData.product && (
                   <div style={{ marginTop: "20px" }}>
-                    <label>{t("Select Options")}</label>
+                    <label>{t("SelectOptions")}</label>
                     {productOptionsMap[formData.product].map((option) => (
                       <div key={option} style={{ marginTop: "2px" }}>
                         <input
