@@ -61,7 +61,7 @@ const OrderForm = () => {
     if (!formData.name.trim()) {
       errors.name = t("NameRequired");
     } else if (!/^[A-Za-z\s]+$/.test(formData.name)) {
-      errors.name = t("Namecanonlycontainlettersandspaces");
+      errors.name = t("Name can only contain letters and spaces");
     }
     if (!formData.email.trim() || !emailRegex.test(formData.email)) {
       errors.email = t("ValidEmailRequired");
@@ -95,7 +95,7 @@ const OrderForm = () => {
       formData.product &&
       (!formData.productOptions || formData.productOptions.length === 0)
     ) {
-      errors.productOptions = t("Pleaseselectatleastoneoption");
+      errors.productOptions = t("Please select atleast one option");
     }
 
     return errors;

@@ -75,7 +75,7 @@ const resources = {
 
         Cinnamon: "Cinnamon",
         Cinnamon_Sticks: "Cinnamon Sticks",
-        Quills: "Quills (short and long sticks).",
+        Quills: "Quills (short, long sticks).",
         Ground_Cinnamon: "Ground Cinnamon",
         Powdered_Cinnamon:"Powdered Cinnamon.",
         Cinnamon_Chips: "Cinnamon Chips",
@@ -197,7 +197,7 @@ const resources = {
         
           Cinnamon: "シナモン",
           Cinnamon_Sticks: "シナモンスティック",
-          Quills: "クイル（短いものと長いもの）",
+          Quills: "クイル（短い棒、長い棒）",
           Ground_Cinnamon: "粉末シナモン",
           Powdered_Cinnamon: "粉末シナモン",
           Cinnamon_Chips: "シナモンチップ",
