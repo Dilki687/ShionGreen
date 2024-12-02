@@ -9,7 +9,6 @@
   margin-top: 70px; /* Same as the navbar height */      
 }
 
-
 .banner-section h1 {
   font-size: 4rem;
   margin-top: 50px;
@@ -17,6 +16,24 @@
 
 .banner-section p {
   font-size: 1.5rem; 
+}
+
+/* Centering Container */
+.cards-container {
+  display:contents;
+  justify-content: center; /* Center cards horizontally */
+  align-items: center;    /* Center cards vertically */
+  min-height: calc(100vh - 400px); /* Full-screen height minus banner */
+  padding: 20px;          /* Add padding for smaller devices */
+}
+
+/* Ensure Row Wraps Responsively */
+.cards-container .row {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap; /* Allow cards to wrap on smaller screens */
+  gap: 20px;       /* Add space between cards */
 }
 
 /* Contact Details Cards */
@@ -41,6 +58,11 @@
 
   .banner-section p {
     font-size: 1rem;
+  }
+
+  .cards-container {
+    min-height: auto; /* Adjust height for smaller devices */
+    padding: 10px;
   }
 }
 

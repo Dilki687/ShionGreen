@@ -1,60 +1,49 @@
 import React from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
-import { useNavigate } from "react-router-dom";
-import logo from "../images/logo.jpg"; // Correct path to the logo
-import { useTranslation } from "react-i18next"; // Import i18next hook
+import { useNavigate, useLocation } from "react-router-dom";
+import logo from "../images/logo.jpg";
+import { useTranslation } from "react-i18next";
 
 const NavBar = () => {
   const navigate = useNavigate();
-  const { t, i18n } = useTranslation(); // Initialize i18next translation hook
+  const location = useLocation(); // Hook to get the current path
+  const { t, i18n } = useTranslation();
 
   // Function to change language
   const handleLanguageChange = (event) => {
     const selectedLanguage = event.target.value;
-    i18n.changeLanguage(selectedLanguage); // Change the language globally
-    localStorage.setItem("language", selectedLanguage); // Store selected language in localStorage to persist language change
+    i18n.changeLanguage(selectedLanguage);
+    localStorage.setItem("language", selectedLanguage);
   };
 
-  // Function to handle scroll to the About Us section
-  const handleScrollToAbout = (e) => {
+  // Function to handle scrolling and navigation
+  const handleScrollToSection = (e, sectionId, route) => {
     e.preventDefault();
-    navigate("/");
-
-    setTimeout(() => {
-      const aboutSection = document.getElementById("aboutSection");
-      if (aboutSection) {
-        const navbarHeight = document.querySelector(".navbar").offsetHeight;
-        const topOffset = aboutSection.offsetTop - navbarHeight;
-        window.scrollTo({
-          top: topOffset,
-          behavior: "smooth",
-        });
-      }
-    }, 0);
-  };
-
-  // Function to handle scroll to the Products section
-  const handleScrollToProducts = (e) => {
-    e.preventDefault();
-    navigate("/");
-
-    setTimeout(() => {
-      const productsSection = document.getElementById(
-        "cinnamonCarouselSection"
-      );
-      if (productsSection) {
-        const navbarHeight = document.querySelector(".navbar").offsetHeight;
-        const topOffset = productsSection.offsetTop - navbarHeight;
-        window.scrollTo({
-          top: topOffset,
-          behavior: "smooth",
-        });
-      }
-    }, 0);
+    if (location.pathname !== route) {
+      navigate(route);
+      return;
+    }
+    const section = document.getElementById(sectionId);
+    if (section) {
+      const navbarHeight = document.querySelector(".navbar").offsetHeight;
+      const topOffset = section.offsetTop - navbarHeight;
+      window.scrollTo({
+        top: topOffset,
+        behavior: "smooth",
+      });
+    }
   };
 
   return (
     <header>
+      <style>
+        {`
+          .nav-link.active {
+            font-weight: bold;
+            color: #FFFFFF !important; /* Highlight color */
+          }
+        `}
+      </style>
       <nav
         className="navbar navbar-expand-lg navbar-dark sticky-navbar"
         style={{
@@ -108,27 +97,53 @@ const NavBar = () => {
           >
             <ul className="navbar-nav ms-auto text-center">
               <li className="nav-item">
-                <a className="nav-link active" href="/">
+                <a
+                  className={`nav-link ${
+                    location.pathname === "/" ? "active" : ""
+                  }`}
+                  href="/"
+                >
                   {t("home")}
                 </a>
               </li>
               <li className="nav-item">
-                <a className="nav-link" href="#" onClick={handleScrollToAbout}>
+                <a
+                  className={`nav-link ${
+                    location.hash === "#aboutSection" ? "active" : ""
+                  }`}
+                  href="#"
+                  onClick={(e) => handleScrollToSection(e, "aboutSection", "/")}
+                >
                   {t("aboutUs")}
                 </a>
               </li>
               <li className="nav-item">
-                <a className="nav-link" href="/contactus">
+                <a
+                  className={`nav-link ${
+                    location.pathname === "/contactus" ? "active" : ""
+                  }`}
+                  href="/contactus"
+                >
                   {t("contactUs")}
                 </a>
               </li>
               <li className="nav-item">
-                <a className="nav-link" href="/products">
+                <a
+                  className={`nav-link ${
+                    location.pathname === "/products" ? "active" : ""
+                  }`}
+                  href="/products"
+                >
                   {t("productsnav")}
                 </a>
               </li>
               <li className="nav-item">
-                <a className="nav-link" href="/orderform">
+                <a
+                  className={`nav-link ${
+                    location.pathname === "/orderform" ? "active" : ""
+                  }`}
+                  href="/orderform"
+                >
                   {t("placeOrder")}
                 </a>
               </li>
@@ -136,12 +151,12 @@ const NavBar = () => {
             <div
               className="d-flex justify-content-center align-items-center mt-3 mt-lg-0"
               style={{
-                marginBottom: "10px", // Add space beneath the language button
+                marginBottom: "10px",
               }}
             >
               <select
                 className="form-select form-select-sm bg-light border-0 w-auto"
-                value={i18n.language} // Set the currently selected language as the value
+                value={i18n.language}
                 onChange={handleLanguageChange}
               >
                 <option value="en">English</option>

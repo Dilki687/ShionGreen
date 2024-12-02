@@ -60,8 +60,8 @@ const OrderForm = () => {
 
     if (!formData.name.trim()) {
       errors.name = t("NameRequired");
-    } else if (!/^[\p{L}\p{Script=Han}\p{Script=Katakana}\p{Script=Hiragana}\s]+$/u.test(formData.name)) {
-      errors.name = t("NameCanOnlyContainLettersSpacesAndJapaneseCharacters");
+    } else if (!/^[A-Za-z\s]+$/.test(formData.name)) {
+      errors.name = t("Namecanonlycontainlettersandspaces");
     }
 
     if (!formData.email.trim() || !emailRegex.test(formData.email)) {
@@ -96,7 +96,7 @@ const OrderForm = () => {
       formData.product &&
       (!formData.productOptions || formData.productOptions.length === 0)
     ) {
-      errors.productOptions = t("Pleaseselectatleastoneoption");
+      errors.productOptions = t("Please select atleast one option");
     }
 
     return errors;
