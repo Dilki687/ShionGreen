@@ -120,6 +120,14 @@
   border-color: #0a2c05;
 }
 
+.btn-primary:active,
+.btn-primary:focus {
+  background-color: #1b6205 !important; /* Light green */
+  border-color: #1b6205 !important; /* Light green border */
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2) !important; /* Optional, for a click effect */
+  color: #fff !important; /* Ensure the text color is visible */
+}
+
 @media (max-width: 768px) {
   .static-sections {
     flex-direction: column;
