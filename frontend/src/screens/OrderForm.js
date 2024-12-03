@@ -96,7 +96,7 @@ const OrderForm = () => {
       formData.product &&
       (!formData.productOptions || formData.productOptions.length === 0)
     ) {
-      errors.productOptions = t("Please select atleast one option");
+      errors.productOptions = t("Pleaseselectatleastoneoption");
     }
 
     return errors;
