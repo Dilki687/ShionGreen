@@ -1,6 +1,7 @@
 const express = require("express");
 const bodyParser = require('body-parser');
 const cors = require('cors');
+
 const dbConfig = require('./db')
 const dotenv = require("dotenv");
 const passport = require("passport");
@@ -17,6 +18,7 @@ app.use(cors());
 app.use(bodyParser.json());
 app.use(express.json()); // Ensure JSON parsing is supported
 app.use(passport.initialize()); // Initialize passport
+
 
 // Routes
 
