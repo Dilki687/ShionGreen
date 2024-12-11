@@ -54,6 +54,26 @@
   transform: scale(1.05); /* Slight zoom on hover */
 }
 
+/* Hovering button effect on the logo */
+.logo-button {
+  display: inline-block;
+  text-decoration: none;
+  transition: transform 0.3s ease-in-out;
+}
+
+.logo-button:hover {
+  transform: scale(1.1); /* Zooms in the logo slightly */
+  cursor: pointer; /* Adds a pointer cursor */
+}
+
+.logo-button img {
+  transition: border-color 0.3s;
+}
+
+.logo-button:hover img {
+  border-color: #ff9900; /* Changes border color on hover */
+}
+
 /* Style for paragraphs under sliders */
 .slider-paragraph {
   margin-top: 20px;
