@@ -25,7 +25,7 @@ function App() {
 
 const MainLayout = () => {
   const location = useLocation();
-  const isAdminRoute = location.pathname === "/admin";
+  const isAdminRoute = location.pathname === "/adminNavigateSandeeepaVishwaShionGreen";
 
   return (
     <div className="layout-container">
@@ -42,7 +42,7 @@ const MainLayout = () => {
             <Route path="/signup" element={<Signup />} />
             <Route path="/contactus" element={<ContactUs />} />
             <Route path="/orderform" element={<OrderForm />} />
-            <Route path="/admin" element={<AdminPage />} />
+            <Route path="/adminNavigateSandeeepaVishwaShionGreen" element={<AdminPage />} />
             <Route path="/products" element={<Products />} />
           </Routes>
         </main>
