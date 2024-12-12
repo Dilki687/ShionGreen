@@ -30,7 +30,7 @@ const Login = () => {
         formData
       );
       console.log("Login Success:", data);
-      navigate("/admin");
+      navigate("/adminNavigateSandeeepaVishwaShionGreen");
     } catch (error) {
       console.error("Login Error:", error.response?.data || error.message);
 
@@ -55,7 +55,7 @@ const Login = () => {
 
       console.log("Google Login Success:", data);
       localStorage.setItem("token", data.token);
-      navigate("/admin");
+      navigate("/adminNavigateSandeeepaVishwaShionGreen");
     } catch (error) {
       console.error("Google Login Error:", error);
       setErrorMessage("Google login failed. Please try again.");
