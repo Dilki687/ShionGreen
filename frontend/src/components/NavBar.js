@@ -17,21 +17,21 @@ const NavBar = () => {
   };
 
   // Function to handle scrolling and navigation
-  const handleScrollToSection = (e, sectionId, route) => {
+  const handleScrollToAbout = (e) => {
     e.preventDefault();
-    if (location.pathname !== route) {
-      navigate(route);
-      return;
-    }
-    const section = document.getElementById(sectionId);
-    if (section) {
-      const navbarHeight = document.querySelector(".navbar").offsetHeight;
-      const topOffset = section.offsetTop - navbarHeight;
-      window.scrollTo({
-        top: topOffset,
-        behavior: "smooth",
-      });
-    }
+    navigate("/");
+
+    setTimeout(() => {
+      const aboutSection = document.getElementById("aboutSection");
+      if (aboutSection) {
+        const navbarHeight = document.querySelector(".navbar").offsetHeight;
+        const topOffset = aboutSection.offsetTop - navbarHeight;
+        window.scrollTo({
+          top: topOffset,
+          behavior: "smooth",
+        });
+      }
+    }, 0);
   };
 
   return (
@@ -112,7 +112,7 @@ const NavBar = () => {
                     location.hash === "#aboutSection" ? "active" : ""
                   }`}
                   href="#"
-                  onClick={(e) => handleScrollToSection(e, "aboutSection", "/")}
+                  onClick={(e) => handleScrollToAbout(e, "aboutSection", "/")}
                 >
                   {t("aboutUs")}
                 </a>
