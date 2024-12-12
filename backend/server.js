@@ -17,7 +17,7 @@ const app = express();
 app.use(cors(
     {
         origin: ["https://shionfrontend.vercel.app"],
-        methods: ["POST", "GET"],
+        methods: ["POST", "GET","DELETE"],
         credentials: true
     }
 ));
