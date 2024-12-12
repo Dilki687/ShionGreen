@@ -16,7 +16,7 @@ const app = express();
 // Middleware
 app.use(cors(
     {
-        origin: ["https://shionfrontend.vercel.app"],
+        origin: ["https://shionfrontend.vercel.app/"],
         methods: ["POST", "GET"],
         credentials: true
     }
